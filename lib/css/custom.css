@@ -1,0 +1,360 @@
+@font-face {
+    font-family: 'BebasNeueBold';
+    src: url('BebasNeueBold.otf');
+    src: url('BebasNeueBold.otf'),
+		url('BebasNeueBold.ttf');
+}
+html{
+	height:100%;
+	font-family:"Open Sans" !important;
+}
+/* login*/
+.login_wrapper{
+    background: url('../images/login_panel.jpg') no-repeat top center transparent;
+    height: 560px;
+	border: 5px solid #23527C;
+	background-size:cover;
+}
+.login_wrapper input[type=submit]{
+    background: #23527C;
+}
+.login_wrapper .well{
+    background: white;
+}
+/*end login*/
+.bold{
+	font-weight: bold;
+}
+textarea {
+	resize: none;
+}
+body{
+	background: #E9EAED;
+	padding-top: 65px;
+}
+/* header*/
+header{
+	width: 100%;
+	background: #23527c;
+	padding: 10px 0;
+}
+header i.fa{
+	font-size:24px;
+}
+header a{
+	color: white;
+}
+header a:hover{
+	color: #eeeeee;
+}
+header .navbar-form{
+	margin-top: 0;
+	margin-bottom: 0;
+    padding: 0;
+    width: 260px;
+}
+header .navbar-form .form-group,header .navbar-form input.form-control {
+    width: 100%;
+}
+header .form-control{
+	height: 30px;
+}
+header .col-sm-12 div{
+    padding-left: 0;
+    padding-right: 0;
+}
+/* main container*/
+.main{
+	padding-right:0px;
+	padding-left:0px;
+	background: #FFFFFF;
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+}
+/*Profile section*/
+.testim{
+margin:10px 0 0;
+}
+.testim .thumbnail{
+height: 370px;
+background:#F8F8F8;
+border:1px solid #686868;
+border-radius:2px;
+padding:5px;position: relative;
+}
+.testim .btn{
+padding:6px 4px;
+}
+.testim .btn-primary,.testim .btn-primary:hover{
+background:#686868;
+border-color:#686868;
+color:white;
+border-top-right-radius:0;
+border-bottom-right-radius:0;
+}
+.testim .btn-default{
+background:#FFFFFF;
+color:#686868;
+border-top-left-radius:0;
+border-bottom-left-radius:0;
+}
+.thumbnail img{
+width:100%;
+}
+.thumbnail p{
+}
+.testim .profile{
+margin:10px 0;
+}
+.testim a,.testim a:hover{
+	text-decoration: none;
+	color: inherit;
+}
+.thumbnail .caption {
+    padding: 0 !important;
+}
+.thumbnail .buttons{
+	margin:0px;
+	text-align:center;
+	position: absolute;
+	bottom: 15px;
+	width: 100%;
+}
+.thumbnail .buttons a{
+	width: 50%;
+	display: inline;
+}
+.testim .photo{
+position:relative;
+overflow:hidden;
+}
+.testim .profile:hover .photo.online:after{
+left:-105px;
+}
+.testim .profile:hover .photo.hot:before{
+right:-105px;
+}
+.testim .profile:hover{
+padding:0px 5px 0px;
+margin:0px;
+}
+.testim .profile:hover .thumbnail p{
+font-size:1.5rem;
+}
+.testim .profile:hover .thumbnail{
+height: 390px;
+border:1px solid #A5004D;
+-webkit-box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.5),0px -1px 5px 0px rgba(50, 50, 50, 0.5);
+-moz-box-shadow:    0px 3px 5px 0px rgba(50, 50, 50, 0.5),0px -1px 5px 0px rgba(50, 50, 50, 0.5);
+box-shadow:         0px 3px 5px 0px rgba(50, 50, 50, 0.5),0px -1px 5px 0px rgba(50, 50, 50, 0.5);
+}
+.testim .profile:hover .btn-primary{
+background:#A6014E;
+border:1px solid #A6014E;
+font-weight:bold;
+}
+/*Sidebar*/
+.sidebar{
+	position: fixed;
+	background: #FFFFFF;
+	height: 100vh;
+	padding-left: 0;
+	padding-right: 0;
+	width: 260px;
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+}
+.sidebar hr{
+	margin:0;
+}
+.user_logged{
+	background:#232937;
+	color:#FFFFEE;
+	position: relative;
+}
+.user_logged a,.user_logged a:hover{
+	font-weight: bold;
+	color: white;
+}
+.user_logged .user_photo{
+	width: 80px;
+	margin:15px 15px;
+}
+.user_logged .user_photo img{
+	background: white;
+}
+.user_logged .user_name{
+	position: absolute;
+	bottom: 10px;
+	left: 110px;
+}
+/* menu*/
+.menu-list{
+	padding: 0;
+	list-style: none;
+}
+.menu-list div{
+	padding:10px 2px 10px 0;
+	line-height: 20px;
+	font-size:16px;
+	background: white;
+}
+.menu-list a{
+	color:#212121;
+	display: inline-block;
+}
+.menu-list a:hover{
+	text-decoration: none;
+}
+.menu-list div.active{
+	background: rgba(0,0,0,0.1) !important;
+}
+.menu-list div:hover{
+	background: rgba(0, 0, 0, 0.02);
+}
+.menu-list i{
+	width: 30px;
+	color:#CCCCCC;
+	text-align: center;
+	margin-right: 15px;
+	margin-left: 8px;
+	font-size:24px;
+}
+.menu-list .circle{
+	background:orange;
+	border-radius: 100%;
+	width: 22px;
+	height: 22px;
+	display: inline-block;
+	text-align: center;
+	font-weight: bold;
+	color: #ffffff;
+	line-height: 20px;
+}
+
+/*action=edit*/
+#date_birth{width: 90%;float: left;margin-right: 3px;}
+/* profile show */
+.profile_display{
+	margin-top:20px;
+}
+.profile_display h2{
+	margin-top: 0;
+}
+.profile_display .btn-message{
+	width: 100%;
+	margin:10px 0;
+}
+/*crop avatar image*/
+.action
+{
+	width: 512px;
+	height: 60px;
+	margin: 10px 0;
+}
+.cropped>img
+{
+	margin-right: 10px;
+}
+.imageBox
+{
+	position: relative;
+	height: 324px;
+	width: 512px;
+	border:1px solid #aaa;
+	background: #fff;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	cursor:move;
+}
+.action input[type="file"]{
+	float: left;
+	width: 300px;
+	cursor: pointer;
+	padding: 3px 0;
+}
+.action input[type="button"]{
+	float: right;
+}
+.imageBox .thumbBox
+{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 256px;
+	height: 162px;
+	margin-top: -81px;
+	margin-left: -128px;
+	box-sizing: border-box;
+	border: 1px solid rgb(102, 102, 102);
+	box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+	background: none repeat scroll 0% 0% transparent;
+}
+.imageBox .spinner
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	text-align: center;
+	line-height: 400px;
+	background: rgba(0,0,0,0.7);
+}
+#editprofileform .col-sm-4{
+	padding-left: 5px;
+	padding-right: 0;
+}
+#editprofileform .col-sm-4 p{
+	margin: 0 0 7px;
+}
+/*search */
+.search-results{
+	margin: 20px 0;
+}
+.search-results a{
+	display:block;
+}
+.search-results .col-sm-4{
+	padding: 22px 15px;
+	margin: 5px 0;
+}
+.search-results .col-sm-2{
+	margin: 5px 0;
+}
+.search-results .col-sm-2 img{
+	width: 100px;
+	max-width: 100%;
+}
+/*activation modal*/
+.modal{
+	z-index: 200;
+	background: transparent;
+	box-shadow: none;
+	overflow: visible;
+}
+.blocker{
+	z-index: 2000;
+}
+.modal-content{
+	width: 540px;
+	margin: auto auto;
+}
+.modal a.close-modal{
+	display: none;
+}
+.modal .input-group{
+	width: 100%;
+}
+.modal .btn{
+	margin: 10px auto;
+	background:#23527C;
+	color: white;
+	padding: 10px 15px;
+}
+.modal .alert-danger{
+	display: none;
+	margin: 0;
+}
+.modal label{
+	font-weight: normal;
+	font-size: 16px;
+}

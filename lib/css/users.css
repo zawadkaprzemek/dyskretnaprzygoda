@@ -1,0 +1,33 @@
+.nav-pils{
+    padding: 10px 0;
+}
+.nav-pils li{
+    float: left;
+    text-align: center;
+}
+.tab-content .col-sm-4{
+    height: 230px;
+    text-align: center;
+}
+.nav-pils li{
+    font-size: 20px;
+}
+.nav-pils li.active a{
+    background: #23527C;
+    color: white;
+}
+.tab-content .col-sm-4 .user_name{
+    font-weight: bold;
+}
+.tab-content .col-sm-4 .btn:hover{
+    background:#23527C;
+    color: white;
+}
+#accordion .panel-heading img{
+    height: 60px;
+    display: inline;
+    margin-right: 10px;
+}
+#accordion .panel-body{
+    height: auto;
+}

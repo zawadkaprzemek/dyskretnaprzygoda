@@ -1,0 +1,23 @@
+{
+  "name":"Dyskretna przygoda",
+  "db":{
+  	"localhost":{
+		"dbname":"dyskretna_przygoda",
+	  	"host":"localhost",
+	  	"login":"root",
+	  	"password":"kisiello1989"
+  	},
+  	"online":{
+		"dbname":"www",
+  		"host":"localhost",
+	  	"login":"www",
+	  	"password":"GmSnfAzu"
+  	}
+  },
+  "display_fake":"yes",
+  "display_true_users":"no",
+  "profiles_per_page":"12",
+  "allow_register_page":"no",
+	"activate_code":"SXC693FXCY",
+  "author":"Przemysław Zawadka"
+}
