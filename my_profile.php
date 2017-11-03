@@ -1,5 +1,6 @@
 <?php session_start();
 include_once 'conf/config.php';
+include_once 'conf/functions.php';
 include_once 'conf/data_base.php';
 if (!isset($_SESSION['usr_id'])) {
     header("Location:login.php");
@@ -23,10 +24,10 @@ if (!isset($_SESSION['usr_id'])) {
                     }else{
                         if($_GET['action']=='edit'){
                             include ('files/my_profile/edit.php');
-                        }elseif ($_GET['action']=='upload_photos'){
-                            include ('files/my_profile/upload_photos.php');
                         }elseif ($_GET['action']=='messages'){
                             include ('files/my_profile/messages.php');
+                        }elseif ($_GET['action']=='notifications'){
+                            include ('files/my_profile/notifications.php');
                         }
                     }
                     ?>

@@ -40,7 +40,7 @@ if ($result->num_rows > 0) {
             $sex="Mężczyzna";
         }
         ?>
-        <div class="profile_display col-sm-10">
+        <div class="profile_display col-sm-12">
 
             <div class="col-sm-4">
                 <img src="<?php echo AVATAR_PATH.'/'.$data['avatar'];?>" class="img-responsive">
@@ -71,6 +71,7 @@ if ($result->num_rows > 0) {
             <div class="col-sm-12">O mnie:
                 <p><?php echo $data['info'];?></p>
             </div>
+            <?php include('photos.php');?>
         </div>
     <?php }
 

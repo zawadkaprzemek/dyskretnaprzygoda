@@ -6,11 +6,13 @@
 <link href="lib/css/jquery.modal.css" rel="stylesheet">
 <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 <link rel="stylesheet" href="lib/css/wdt-emoji-bundle.css"/>
-<link rel="stylesheet" type="text/css" href="lib/css/custom.css">
 <link rel="stylesheet" type="text/css" href="lib/css/chat.css">
+<link rel="stylesheet" type="text/css" href="lib/css/custom.css">
 <script type="text/javascript" src="lib/js/jquery.js"></script>
 <script type="text/javascript" src="lib/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="lib/js/scripts.js"></script>
+<script src="lib/js/przemo-gallery.js"></script>
+<script src="lib/js/gallery-upload.js"></script>
 <script type="text/javascript" src="lib/js/emoji.min.js"></script>
 <script type="text/javascript" src="lib/js/wdt-emoji-bundle.js"></script>
 <script type="text/javascript" src="lib/js/jquery.modal.js"></script>

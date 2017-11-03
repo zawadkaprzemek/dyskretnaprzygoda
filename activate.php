@@ -1,9 +1,10 @@
 <?php
 session_start();
 include_once 'conf/config.php';
+include_once 'conf/functions.php';
 include_once 'conf/data_base.php';
 $key=$_POST['key'];
-if($key===$config->getConfig()->activate_code){
+if($key===ACTIVATE_CODE){
     $table='users';
     $sql="UPDATE $table SET activate='1' WHERE name='".$_SESSION['usr_name']."'";
     if ($con->query($sql) === TRUE) {

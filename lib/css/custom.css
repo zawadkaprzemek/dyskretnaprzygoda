@@ -8,20 +8,6 @@ html{
 	height:100%;
 	font-family:"Open Sans" !important;
 }
-/* login*/
-.login_wrapper{
-    background: url('../images/login_panel.jpg') no-repeat top center transparent;
-    height: 560px;
-	border: 5px solid #23527C;
-	background-size:cover;
-}
-.login_wrapper input[type=submit]{
-    background: #23527C;
-}
-.login_wrapper .well{
-    background: white;
-}
-/*end login*/
 .bold{
 	font-weight: bold;
 }
@@ -46,6 +32,7 @@ header a{
 }
 header a:hover{
 	color: #eeeeee;
+	text-decoration: none;
 }
 header .navbar-form{
 	margin-top: 0;
@@ -62,6 +49,24 @@ header .form-control{
 header .col-sm-12 div{
     padding-left: 0;
     padding-right: 0;
+}
+header .notification{
+	position: relative;
+	margin-right: 10px;
+}
+header .notification span{
+	position: absolute;
+	top:-10px;
+	left:0;
+	z-index: 100;
+	background: rgb(255,0,0);
+	color:white;
+	font-size: 12px;
+	line-height: 14px;
+	font-weight: bold;
+	padding: 1px;
+	text-align: center;
+	display: block;
 }
 /* main container*/
 .main{
@@ -357,4 +362,167 @@ font-weight:bold;
 .modal label{
 	font-weight: normal;
 	font-size: 16px;
+}
+
+/*galeria*/
+.galleries .col-sm-2{
+	height: 100px;
+	margin-bottom: 10px;
+	position: relative;
+}
+.galleries .col-sm-2.lock{
+	height: auto;
+	padding: 0;
+	cursor: pointer;
+}
+.galleries .col-sm-2 button.delete{
+	position: absolute;
+	right: 0;
+	top:0;
+	background: rgba(0,0,0,0.2);
+	border: none;
+	visibility: hidden;
+}
+.galleries .col-sm-2:hover > button.delete{
+	visibility: visible;
+}
+.galleries .panel-body{
+	max-height: 220px;
+	min-height: 110px;
+	height: auto;
+	overflow-y: auto;
+}
+.galleries .panel-heading{
+	color: #333;
+	background-color: #f5f5f5;
+	border-color: #ddd;
+}
+.gallery{
+	background: rgba(0,0,0,0.4);
+	height: 800px;
+	padding: 0;
+	margin-bottom: 20px;
+}
+.gallery .item {
+	text-align: center;
+	display: none;
+}
+.gallery .item.active{
+	display: block;
+}
+#image-cont{
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.gallery .gallery-images img{
+	position: absolute;
+	top:0;
+	left:0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	max-width: 100%;
+	max-height: 100%;
+}
+.gallery .gallery-controller{
+	position: absolute;
+	width: 40px;
+	text-align: center;
+	top:49%;
+}
+.gallery .gallery-controller.prev{
+	left:0;
+}
+.gallery .gallery-controller.next{
+	right:0;
+}
+.gallery .gallery-controller.close{
+	right:0;
+	top:0;
+}
+.gallery .gallery-controller i.fa{
+	font-size: 30px;
+	color: rgba(255,255,255,0.5);
+}.gallery .gallery-controller i.fa:hover{
+	 color: rgba(255,255,255,1);
+ }
+.upload{
+	position: relative;
+	min-height: 120px;
+	margin-bottom: 50px;
+}
+.upload .loading{
+	display: none;
+	background: rgba(255,255,255,0.3);
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	position: absolute;
+	top:0; left: 0; right: 0; bottom: 0;
+	margin: auto auto;
+	text-align: center;
+}
+.upload .loading img{
+	width: 120px;
+}
+.fileinput-button {
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+}
+.fileinput-button input {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	opacity: 0;
+	-ms-filter: 'alpha(opacity=0)';
+	font-size: 200px !important;
+	direction: ltr;
+	cursor: pointer;
+}
+/*notyfikacje*/
+.notification .notification-panel .panel-body{
+	height: auto;
+	overflow-y: auto;
+	padding: 15px 0;
+}
+.notification .notification-panel form{
+	display: inline-block;
+	margin-left: 20px;
+}
+/*my_messages*/
+.my_messages .panel-body{
+	padding: 5px 0;
+	height: auto;
+	overflow-y: auto;
+	display: block;
+	background: #f5f5f5;
+	border: 1px solid #ddd;
+	box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.my_messages .col-sm-12{
+	padding:0;
+}
+.my_messages .panel{
+	margin-bottom: 10px;
+}
+.my_messages .panel:last-of-type {
+	margin-bottom: 0;
+}
+.my_messages .messages_top{
+	padding: 5px 0;
+}
+.my_messages .messages_container{
+	border-radius: 5px;
+	border:2px solid #f5f5f5;
+	margin-bottom: 20px;
+	box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.my_messages .panel-default div{
+	padding: 25px 15px 0;
+}
+.my_messages .panel-default .col-sm-2{
+	padding: 0 15px;
 }

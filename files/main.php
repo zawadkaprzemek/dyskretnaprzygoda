@@ -12,13 +12,13 @@ if($config->getConfig()->display_fake=='yes'){
 }else{
 	$sql.="WHERE role='user'";
 }
-$sql2="SELECT * FROM users_info WHERE user_name='".$_SESSION['usr_name']."'";
+/*$sql2="SELECT * FROM users_info WHERE user_name='".$_SESSION['usr_name']."'";
 $info_exist = $con->query($sql2);
 if ($info_exist->num_rows > 0) {
 	while($profile = $info_exist->fetch_assoc()) {
 			$sql.=" AND sex!='".$profile['sex']."'";
 	}
-}
+}*/
 $result = $con->query($sql);
 if(!isset($_GET['page']))
 {

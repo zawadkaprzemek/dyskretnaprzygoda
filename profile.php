@@ -1,5 +1,6 @@
 <?php session_start();
 include_once 'conf/config.php';
+include_once 'conf/functions.php';
 include_once 'conf/data_base.php';
 if (!isset($_SESSION['usr_id'])) {
     header("Location:login.php");

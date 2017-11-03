@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
             $sex="Mężczyzna";
         }
         ?>
-        <div class="profile_display col-sm-10">
+        <div class="profile_display col-sm-12">
             <div class="col-sm-8"><h2>Mój profil</h2></div>
             <div class="clearfix"></div>
             <div class="col-sm-4">
@@ -40,6 +40,9 @@ if ($result->num_rows > 0) {
             <div class="col-sm-12">O mnie:
                 <p><?php echo $data['info'];?></p>
             </div>
+            <?php
+            include ('photos.php');
+            ?>
         </div>
     <?php }
 

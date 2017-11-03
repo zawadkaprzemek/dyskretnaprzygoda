@@ -27,7 +27,13 @@
                         </h4>
                     </div>
                     <div id="collapse_<?php echo $profiles['name']; ?>" class="panel-collapse collapse">
-                        <div class="panel-body">
+                        <div class="panel-body my_messages">
+                            <div class="col-sm-12 messages_container">
+                                <div class="col-sm-12 messages_top">
+                                    <div class="col-sm-6 col-sm-offset-2"><i class="fa fa-user fa-2x" aria-hidden="true" title="Użytkownik"></i></div>
+                                    <div class="col-sm-1 text-center"><i class="fa fa-comments-o fa-2x" aria-hidden="true" title="Liczba wiadomości"></i></div>
+                                    <div class="col-sm-3 text-center"><i class="fa fa-clock-o fa-2x" aria-hidden="true" title="Ostatnia wiadomość"></i></div>
+                                </div>
 
 <?php while ($mess = $result2->fetch_assoc()) {
 if ($mess['user_to'] == $profiles['name']) {
@@ -84,9 +90,8 @@ array_push($arr, $add);
                                 }
                                 $item['date']=nice_data($item['date'],$month_names);
                                 ?>
-                                <div class="col-sm-10 col-sm-offset-1">
-                                    <a class="<?php echo $class; ?>"
-                                       href="message.php?to=<?php echo $profiles['name'] ?>&from=<?php echo $item['name'] ?>">
+                                <div class="col-sm-12 panel panel-default">
+                                    <a class="<?php echo $class; ?> panel-body" href="message.php?to=<?php echo $profiles['name'] ?>&from=<?php echo $item['name'] ?>">
                                         <div class="col-sm-2"><img
                                                 src="<?php echo AVATAR_PATH . '/' . $item['avatar'] ?>"
                                                 class="img-responsive img-rounded"></div>
@@ -94,9 +99,9 @@ array_push($arr, $add);
                                         <div class="col-sm-3 text-center">Nieprzeczytane: <?php echo $item['unread'] ?></div>
                                         <div class="col-sm-3 text-center"><?php echo $item['date'] ?></div>
                                     </a>
-                                    <div class="clearfix"></div>
                                 </div>
                             <?php } ?>
+                                </div>
                         </div>
                     </div>
                 </div>

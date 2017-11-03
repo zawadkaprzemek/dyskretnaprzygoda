@@ -1,5 +1,6 @@
 <?php session_start();
 include_once 'conf/config.php';
+include_once 'conf/functions.php';
 include_once 'conf/data_base.php';
 if (!isset($_SESSION['usr_id'])) {
     header("Location:login.php");
@@ -33,6 +34,8 @@ if (!isset($_SESSION['usr_id'])) {
                                 include ('files/users/edit.php');
                             }elseif ($_GET['action']=='registered_users'){
                                 include ('files/users/show.php');
+                            }elseif ($_GET['action']=='notifications'){
+                                include ('files/users/notifications.php');
                             }else{
                                 header("Location:users.php");
                             }
@@ -40,7 +43,6 @@ if (!isset($_SESSION['usr_id'])) {
                     }else{
                         header("Location:index.php");
                     }
-
                     ?>
                 </div>
                 <div class="col-sm-3 sidebar"><?php include('files/sidebar.php');?></div>

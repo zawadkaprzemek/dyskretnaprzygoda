@@ -1,0 +1,58 @@
+body{
+    background: url('../images/background.jpg')no-repeat top center black;
+    background-size:100%;
+}
+.col-md-10.well{
+    margin-top: 30%;
+    background: #FFFFFF;
+    border-radius: 20px;
+}
+.well legend{
+    text-align: center;
+    border: none;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.well input{
+    border-radius: 10px;
+}
+.well input[type="submit"]{
+    color: white;
+    font-weight: bold;
+    width: 150px;
+    font-size: 20px;
+    display: block;
+    margin:10px auto;
+    background: #eb2d2d;
+    background: -moz-linear-gradient(top,  #eb2d2d 0%, #8e0606 100%);
+    background: -webkit-linear-gradient(top,  #eb2d2d 0%,#8e0606 100%);
+    background: linear-gradient(to bottom,  #eb2d2d 0%,#8e0606 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eb2d2d', endColorstr='#8e0606',GradientType=0 );
+}
+.well hr{
+    width: 20%;
+    display: block;
+    margin: 0 auto;
+    background-color: #C72121;
+    height: 2px;
+    margin-bottom: 30px;
+}
+.well .form-group{
+    margin-bottom: 20px;
+}
+.well .form-group:nth-of-type(3){
+    margin-bottom: 0;
+}
+footer{
+    padding: 15px 0;
+    background:#E5E5E5;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+    z-index: 100;
+}
+footer img{
+    display: inline-block;
+    margin: 10px 40px;
+}
