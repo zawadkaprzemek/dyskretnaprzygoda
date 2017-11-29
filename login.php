@@ -20,6 +20,7 @@ if (isset($_POST['login'])) {
         $_SESSION['usr_name'] = $row['name'];
         $_SESSION['usr_role'] = $row['role'];
         $_SESSION['activate'] = $row['activate'];
+        $_SESSION['account_type'] = $row['account_type'];
         header("Location: index.php");
     } else {
         $errormsg = "Niewłaściwy adres Email lub hasło!!!";

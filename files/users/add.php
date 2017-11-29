@@ -10,7 +10,7 @@ if(isset($_POST['add_profile'])){
     $table='users';
     $mail=$login.'@fmail.com';
     $pass=md5($login.'.jpg');
-    $sql="INSERT INTO $table VALUES(NULL,'$login','$mail','$pass','fake','1')";
+    $sql="INSERT INTO $table VALUES(NULL,'$login','$mail','$pass','fake','2','1')";
     if ($con->query($sql) === TRUE) {
         $avatar=$_POST['avatar'];
         list($type, $avatar) = explode(';', $avatar);
@@ -93,7 +93,7 @@ if(isset($_POST['add_profile'])){
         <div class="clearfix"></div>
         <div class="form-group col-sm-6">
             <label for="date_birth">Wiek:</label>
-            <p><input type="number" class="form-control" id="age" name="age" value="<?php echo $age?>" required></p>
+            <p><input type="number" class="form-control" id="age" name="age" min="18" value="<?php echo $age?>" required></p>
         </div>
         <div class="clearfix"></div>
         <div class="col-sm-8">

@@ -8,7 +8,7 @@ if (!isset($_SESSION['usr_id'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?php echo $config->getConfig()->name?> - Mój profil</title>
+    <title><?php echo $config->getConfig()->name?></title>
     <?php include ('files/head.php');?>
 </head>
 <body>
@@ -28,6 +28,8 @@ if (!isset($_SESSION['usr_id'])) {
                             include ('files/my_profile/messages.php');
                         }elseif ($_GET['action']=='notifications'){
                             include ('files/my_profile/notifications.php');
+                        }elseif ($_GET['action']=='favorite'){
+                            include ('files/my_profile/favorite.php');
                         }
                     }
                     ?>

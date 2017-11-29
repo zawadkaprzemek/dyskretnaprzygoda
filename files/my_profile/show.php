@@ -31,7 +31,8 @@ if ($result->num_rows > 0) {
                 <img src="<?php echo AVATAR_PATH.'/'.$data['avatar'];?>" class="img-responsive">
             </div>
             <div class="col-sm-8">
-                <div class="col-sm-12"><h2><?php echo $data['user_name'].', '.$age;?></h2></div>
+                <div class="col-sm-12"><h2><?php echo $data['user_name'].', '.$age;?></h2> <?php echo is_vip
+                    ($data['user_name'],$con)?></div>
                 <div class="col-sm-4">Płeć:</div>
                 <div class="col-sm-8"><?php echo $sex?></div>
                 <div class="col-sm-4">Stan cywilny:</div>

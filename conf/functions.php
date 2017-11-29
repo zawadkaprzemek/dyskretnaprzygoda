@@ -140,4 +140,42 @@ function jednostki($howmany){
     }
     return $howmany.' '.$jed;
 }
+
+function is_vip($user,$con){
+    $sql="SELECT account_type FROM users WHERE name='".$user."'";
+    $res=$con->query($sql)->fetch_array()['account_type'];
+    if($res==2){
+        if($_SESSION['usr_name']==$user){
+            $title='Posiadasz konto VIP';
+        }else{
+            $title='Ten użytkownik posiada konto VIP';
+        }
+        return '<span class="vip" title="'.$title.'"><i class="fa fa-trophy" aria-hidden="true"></i></span>';
+    }
+}
+function coins_status($name,$con){
+    $coins_table='account_coins';
+    $coins_sql="SELECT coins FROM $coins_table WHERE login='".$name."'";
+    return $con->query($coins_sql)->fetch_array()['coins'];
+}
+
+function send_message($from,$to,$message,$account_type,$message_price='20',$con){
+    $table="messages";
+    $sql = "INSERT INTO $table VALUES(NULL,'$from','$to','$message',NOW(),0)";
+    if($account_type=='2'){
+        if ($con->query($sql) === TRUE) {
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        $coin_table='account_coins';
+        $coin_sql="UPDATE $coin_table SET coins=coins-".$message_price." WHERE login='".$from."'";
+        if((coins_status($from,$con)>=$message_price)&&($con->query($sql)===TRUE)&&($con->query($coin_sql)===TRUE)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
 ?>

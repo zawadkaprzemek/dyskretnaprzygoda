@@ -1,8 +1,26 @@
-<div class="text-center testim">
+<div class="text-center profile_list">
+	<?php
+	if($_SESSION['account_type']=='1') {
+		?>
+		<div class="col-md-4 col-sm-6 profile buy_points list-unstyled">
+			<div class="thumbnail">
+				<p>Twoje konto: STANDARD</p>
+				<h3>Zmień konto na VIP</h3>
+				<ul>
+					<li><i class="fa fa-check" aria-hidden="true"></i>nieograniczone wiadomości</li>
+					<li><i class="fa fa-check" aria-hidden="true"></i>dostęp do pełnej bazy użytkowników</li>
+					<li><i class="fa fa-check" aria-hidden="true"></i>baza seks-filmów użytkowniczek</li>
+				</ul>
+				<p>Kliknij w przycisk poniżej i raz na zawsze zmień swoje konto na VIP teraz:</p>
+				<a href="doladuj.php"><button class="btn btn-info">Zmień konto na VIP</button></a>
+			</div>
+		</div>
 <?php
+	}
 $table="users_info";
 $table2="users";
 $sql="SELECT * FROM $table INNER JOIN $table2 ON $table.user_name=$table2.name ";
+//$sql="SELECT * FROM $table WHERE $table.user_name IN (SELECT user_name FROM $table2 WHERE role='fake') LIMIT 0,11";
 if($config->getConfig()->display_fake=='yes'){
     if($config->getConfig()->display_true_users=='yes'){
          $sql.="WHERE (role='fake' OR role='user')";
@@ -12,13 +30,7 @@ if($config->getConfig()->display_fake=='yes'){
 }else{
 	$sql.="WHERE role='user'";
 }
-/*$sql2="SELECT * FROM users_info WHERE user_name='".$_SESSION['usr_name']."'";
-$info_exist = $con->query($sql2);
-if ($info_exist->num_rows > 0) {
-	while($profile = $info_exist->fetch_assoc()) {
-			$sql.=" AND sex!='".$profile['sex']."'";
-	}
-}*/
+
 $result = $con->query($sql);
 if(!isset($_GET['page']))
 {
@@ -29,15 +41,25 @@ if(!isset($_GET['page']))
 		header("Location:index.php");
 	}
 }
-$min=$config->getConfig()->profiles_per_page*($page-1);
-$max=$config->getConfig()->profiles_per_page*$page;
+if($_SESSION['account_type']=='1'){
+	$prof_pp=$config->getConfig()->profiles_per_page;
+}else{
+	$prof_pp=$config->getConfig()->profiles_per_page+1;
+}
+$min=$prof_pp*($page-1);
+$max=$prof_pp*$page;
 $number=0;
 	if ($result->num_rows > 0) {
     while($profile = $result->fetch_assoc()) {
     	$number+=1;
 	    	if(($number>$min)&&($number<=$max)) {
+	    		if($profile['account_type']=='2'){
+	    			$class='vip';
+				}else{
+					$class='standard';
+				}
 	    		?>
-	    		<div class="col-md-4 col-sm-6 profile">
+	    		<div class="col-md-4 col-sm-6 profile <?php echo $class;?>">
 				<a href="profile.php?name=<?php echo $profile['name'];?>">
 				<div class="thumbnail">
 					<div class="photo">
@@ -70,14 +92,14 @@ $number=0;
 	<li><a href="<?php echo $_SERVER['PHP_SELF'].'?page='.($page-1);?>">«</a></li>
 	<?php }?>
 <?php
-		    for ($i=0; $i<$result->num_rows/$config->getConfig()->profiles_per_page; $i++) {
+		    for ($i=0; $i<$result->num_rows/$prof_pp; $i++) {
 		    		if($i==($page-1)){
 		    			echo '<li class="active"><a href="#">'.($i+1).'</a></li>';
 		    		}else{
 		    			echo '<li><a href="'.$_SERVER['PHP_SELF'].'?page='.($i+1).'">'.($i+1).'</a></li>';
 		    		} 
 		    }
-		    if($page<$result->num_rows/$config->getConfig()->profiles_per_page){?>
+		    if($page<$result->num_rows/$prof_pp){?>
 				<li><a href="<?php echo $_SERVER['PHP_SELF'].'?page='.($page+1);?>">»</a></li></ul>
 			<?php }
 ?>

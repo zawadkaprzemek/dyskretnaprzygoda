@@ -46,7 +46,38 @@ if ($result->num_rows > 0) {
                 <img src="<?php echo AVATAR_PATH.'/'.$data['avatar'];?>" class="img-responsive">
             </div>
             <div class="col-sm-8">
-                <div class="col-sm-12"><h2><?php echo $data['user_name'].', '.$age;?></h2></div>
+                <div class="col-sm-8"><h2><?php echo $data['user_name'].', '.$age;?></h2><?php echo is_vip
+                    ($data['user_name'],$con)?></div>
+                <div class="col-sm-4 actions">
+                    <?php if($_SESSION['account_type']==2){?>
+                    <input type="hidden" name="user" id="user_name" value="<?php echo $data['user_name']?>">
+                    <?php
+                    $fsql="SELECT * FROM favorite_users WHERE user_name1='".$_SESSION['usr_name']."' AND user_name2='"
+                        .$data['user_name']."'";
+                    if($con->query($fsql)->num_rows>0){
+                        $fclass=' on';
+                        $ftitle='Usuń z ulubionych';
+                    }else{
+                        $ftitle='Dodaj do ulubionych';
+                    }
+                    ?>
+                    <span class="favorite<?php echo @$fclass?>" title="<?php echo $ftitle?>">
+                        <i class="fa fa-star-o" aria-hidden="true"></i></span>
+                    <?php
+                    $fsql="SELECT * FROM blocked_users WHERE user_name1='".$_SESSION['usr_name']."' AND user_name2='"
+                        .$data['user_name']."'";
+                    if($con->query($fsql)->num_rows>0){
+                        $bclass=' on';
+                        $btitle='Odblokuj użytkownika';
+                    }else{
+                        $btitle='Zablokuj użytkownika';
+                    }
+                    ?>
+                    <span class="blocked<?php echo @$bclass?>" title="<?php echo $btitle?>">
+                        <i class="fa fa-ban" aria-hidden="true"></i></span>
+                <?php }?>
+                </div>
+                <div class="clearfix"></div>
                 <div class="col-sm-4">Płeć:</div>
                 <div class="col-sm-8"><?php echo $sex?></div>
                 <div class="col-sm-4">Stan cywilny:</div>

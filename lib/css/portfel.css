@@ -1,0 +1,105 @@
+.cbtn {
+  background: #4cad34;
+  background-image: -webkit-linear-gradient(top, #4cad34, #3f802f);
+  background-image: -moz-linear-gradient(top, #4cad34, #3f802f);
+  background-image: -ms-linear-gradient(top, #4cad34, #3f802f);
+  background-image: -o-linear-gradient(top, #4cad34, #3f802f);
+  background-image: linear-gradient(to bottom, #4cad34, #3f802f);
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  border:none;
+  line-height: 24px;
+}
+
+.cbtn:hover {
+  background: #3f8f2b;
+  background-image: -webkit-linear-gradient(top, #3f8f2b, #27591b);
+  background-image: -moz-linear-gradient(top, #3f8f2b, #27591b);
+  background-image: -ms-linear-gradient(top, #3f8f2b, #27591b);
+  background-image: -o-linear-gradient(top, #3f8f2b, #27591b);
+  background-image: linear-gradient(to bottom, #3f8f2b, #27591b);
+  text-decoration: none;
+  color:#FFF;
+}
+.pli{
+  margin:0px;
+  padding:0px;
+  font-size:17.5px;
+}
+.last{
+  margin-bottom:25px !important;
+}
+.leftbox{
+  border:2px solid #23527C;
+  text-align:center;
+}
+.rightbox{
+  border:2px solid #23527C;
+  text-align:center;
+}
+.boxheader{
+  background:#23527C;
+  color:#FFF;
+  padding:10px 6px 1px 6px;
+  margin-bottom:10px;
+}
+.boxcontent{
+  padding:5px 10px 15px 10px;
+}
+.secure{
+  margin-top:15px;
+  border:1px solid #CCFFCC;
+  padding:14px 15px 2px 15px;
+  text-align:center;
+  background:#F2FFF0;
+}
+.table{
+    padding: 8px;
+    line-height: 1.5;
+    vertical-align:bottom;
+    border-top: 1px solid #dddddd;
+}
+.table .function{
+  color:#4CAD34;
+  border-left: 1px solid #dddddd;
+  text-align:center;
+}
+.table .disfunction{
+  color:#333;
+  border-left: 1px solid #dddddd;
+  text-align:center;
+}
+.table .partial{
+  color:#666;
+  border-left: 1px solid #dddddd;
+  text-align:center;
+  font-style:italic;
+}
+.table .non{
+  color:#FF3333;
+  border-left: 1px solid #dddddd;
+  text-align:center;
+  font-style:italic;
+}
+.tablediv{
+  padding:25px;
+  width:85%;
+  margin:auto;
+}
+#code_input.form-control{
+  height:46px;
+  margin-bottom:20px;
+}
+.rightbox.pay_checkout{
+  border-color:#ec971f;
+  margin: 0;
+}
+.pay_checkout .boxheader{
+  background: #ec971f;
+}

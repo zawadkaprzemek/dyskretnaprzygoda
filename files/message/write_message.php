@@ -26,13 +26,21 @@ if (isset($_POST['message'])) {
     if ($message != '') {
         $user_from = $_POST['user_from'];
         $user_to = $_POST['user_name'];
-        $sql = "INSERT INTO $table (id,user_from,user_to,message,data_mess,unread) VALUES(NULL,'$user_from','$user_to','$message',NOW(),0)";
-        if ($con->query($sql) === TRUE) {
+
+        if(send_message($user_from,$user_to,$message,$_SESSION['account_type'],$config->getConfig()->prices->message,$con)){
             header("Location:" . $_SERVER['PHP_SELF'] . "?with=" . $_GET['with']);
-        } else {
-            $errormsg = "Popraw wiadomość";
+        }else{
+            if(coins_status($_SESSION['usr_name'],$con)<$config->getConfig()->prices->message){
+                $errormsg = "Masz za mało punktów aby wysłać wiadomość";
+            }else{
+                $errormsg = "Popraw wiadomość";
+            }
+
         }
     }
+}
+if(($_SESSION['account_type']=='1')&&(coins_status($_SESSION['usr_name'],$con)<$config->getConfig()->prices->message)){
+    $disabled='disabled=true';
 }
 ?>
 <div class="col-sm-12" id="chat" xmlns="http://www.w3.org/1999/html">
@@ -84,18 +92,27 @@ if (isset($_POST['message'])) {
                     ?>
                     <li>Jeszcze nie ma żadnych wiadomości między Wami, zrób pierwszy krok i napisz...</li>
                 <?php }
+                if(empty(is_vip($_SESSION['usr_name'],$con))&&(coins_status($_SESSION['usr_name'],$con)<$config->getConfig()->prices->message)){
+                    ?>
+                <li>
+                    Masz konto standard i skończyły Ci się punkty. Chcesz dalej rozmawiać z użytkownikiem
+                    <strong><?php echo $_GET['with']?></strong>? Zmień teraz konto na VIP, albo doładuj swoje konto punktami. Kliknij w poniższy
+                    przycisk. <a href="doladuj.php" class="plus"><button title="Dodaj punkty"><i class="fa
+                            fa-plus-circle" aria-hidden="true"></i></button> Dodaj punkty</a>
+                </li>
+               <?php }
+
                 ?>
             </ul>
         </div>
         <div class="panel-footer">
             <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>?with=<?php echo $_GET['with'] ?>"
-                  method="post" name="messageform" id="messageform">
+                  method="post" name="messageform" id="messageform" <?php echo @$disabled;?> >
                 <div class="input-group">
-                    <textarea id="message-input" type="text" data-emojiable="true" name="message" class="form-control wdt-emoji-bundle-enabled wdt-emoji-open-on-colon input-sm" placeholder="..."
+                    <textarea id="message-input" <?php echo @$disabled;?> type="text" data-emojiable="true" name="message" class="form-control wdt-emoji-bundle-enabled wdt-emoji-open-on-colon input-sm" placeholder="..."
                               required></textarea>
                     <span class="input-group-btn">
-                            <input type="submit" class="btn btn-warning btn-sm" id="btn-chat" name="write_message"
-                                   value="Wyślij"/>
+                            <input type="submit" <?php echo @$disabled;?> class="btn btn-warning btn-sm" id="btn-chat" name="write_message" value="Wyślij"/>
                         </span>
 
                 </div>
@@ -109,7 +126,11 @@ if (isset($_POST['message'])) {
             </div>
 
         </div>
+
     </div>
+    <?php if(isset($errormsg)){
+        echo '<p class="alert-warning alert">'.$errormsg.'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></p>';
+    }?>
 
 
     <?php }

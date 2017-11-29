@@ -12,7 +12,6 @@ if (!isset($_SESSION['usr_id'])) {
 	<?php include ('files/head.php');?>
 </head>
 <body>
-<?php include('files/activate_modal.php');?>
 <?php include('files/header.php');?>
 	<section>
 		<div class="container">
@@ -20,6 +19,7 @@ if (!isset($_SESSION['usr_id'])) {
 				<div class="col-sm-12">
 					<div class="col-sm-9 main pull-right">
 						<?php
+						include('files/vip_pay_checkout.php');
 						include('files/main.php');
 						?>
 					</div>

@@ -39,7 +39,15 @@ if (isset($_POST['message'])) {
 <div class="col-sm-12" id="chat" xmlns="http://www.w3.org/1999/html">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <span class="glyphicon glyphicon-comment"></span> Chat
+            <span class="glyphicon glyphicon-comment"></span> Chat z <a href="profile.php?name=<?php echo $_GET['from'];
+            ?>" target="_blank"><?php echo $_GET['from'];?></a>
+            <?php
+            $vip=is_vip($_GET['from'],$con);
+            if(empty($vip)){ ?>
+            <i class="fa fa-gg-circle" aria-hidden="true"></i> <?php echo coins_status($_GET['from'],$con);?>
+            <?php }else{
+                echo $vip;
+            }?>
         </div>
         <div class="panel-body">
             <ul class="chat">

@@ -44,6 +44,11 @@ if(isset($_GET['action'])){
         <?php }
         ?></a>
 </div>
+<div <?php if((stristr($_SERVER['PHP_SELF'],'my_profile.php')=='my_profile.php')&&(($action=='favorite'))){
+    echo 'class="active"';}?>>
+    <a href="my_profile.php?action=favorite"><i class="fa fa-star" aria-hidden="true"></i>Ulubieni
+        użytkownicy</a>
+</div>
     <hr>
     <?php
     if($_SESSION['usr_role']=='super_admin'){?>

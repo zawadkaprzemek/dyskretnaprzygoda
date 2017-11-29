@@ -13,8 +13,12 @@ if (isset($_GET['signup'])) {
     $email = mysqli_real_escape_string($con, $_GET['email']);
     $password = mysqli_real_escape_string($con, $_GET['password']);
     $cpassword = mysqli_real_escape_string($con, $_GET['rep_password']);
-    
-    //name can contain only alpha characters and space
+    if(isset($_GET['activate'])){
+        $activate=$_GET['activate'];
+    }else{
+        $activate=0;
+    }
+
     if (!preg_match("/^[A-Za-z0-9]+$/",$name)) {
         $error = true;
         $message ='{"status":"error","message":"Login może składać się tylko z liter i cyfr"}';
@@ -46,9 +50,14 @@ if (isset($_GET['signup'])) {
         $message ='{"status":"error","message":"Hasła nie są takie same"}';
     }
     if (!$error) {
-        if(mysqli_query($con, "INSERT INTO users VALUES(NULL,'" . $name . "', '" . $email . "', '" . md5($password) . "','user',0)")) {
-            $message ="Rejestracja zakończona sukcesem <a href='login.php'>Kliknij tutaj aby się zalogować</a>";
-            $message ='{"status":"ok","message":"Rejestracja udana"}';
+        if(mysqli_query($con, "INSERT INTO users VALUES(NULL,'" . $name . "', '" . $email . "', '" . md5($password) .
+            "','user','1',".$activate.")")) {
+            //$message ="Rejestracja zakończona sukcesem <a href='login.php'>Kliknij tutaj aby się zalogować</a>";
+            if(mysqli_query($con,"INSERT INTO account_coins VALUES ('".$name."','".$config->getConfig()->start_points."')")){
+                $message ='{"status":"ok","message":"Rejestracja udana"}';
+            }else{
+                $message ='{"status":"error","message":"'.$con->error.'"}';
+            }
         } else {
             $message ='{"status":"error","message":"'.$con->error.'"}';
         }

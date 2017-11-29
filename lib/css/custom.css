@@ -50,23 +50,46 @@ header .col-sm-12 div{
     padding-left: 0;
     padding-right: 0;
 }
-header .notification{
+header .notifications_container a{
 	position: relative;
 	margin-right: 10px;
 }
-header .notification span{
+header .notifications_container a span{
 	position: absolute;
 	top:-10px;
-	left:0;
+	left:-5px;
 	z-index: 100;
+    border-radius: 100%;
 	background: rgb(255,0,0);
 	color:white;
-	font-size: 12px;
-	line-height: 14px;
+    width: 16px;
+    height: 16px;
+	font-size: 13px;
+	line-height: 16px;
 	font-weight: bold;
-	padding: 1px;
 	text-align: center;
 	display: block;
+}
+header .coins{
+	color: white;
+	line-height: 28px;
+	font-size: 18px;
+}
+header .notifications_container a.plus{
+    margin-right: 30px;
+    display: inline-block;
+    font-weight: bold;
+}
+header .plus button{
+	background: transparent;
+	border: none;
+}
+header .plus i{
+	color:gold;
+}
+header .vip{
+	color: white;
+	margin-right: 30px;
 }
 /* main container*/
 .main{
@@ -74,29 +97,30 @@ header .notification span{
 	padding-left:0px;
 	background: #FFFFFF;
 	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+	min-height: 100vh;
 }
 /*Profile section*/
-.testim{
+.profile_list{
 margin:10px 0 0;
 }
-.testim .thumbnail{
+.profile_list .thumbnail{
 height: 370px;
 background:#F8F8F8;
 border:1px solid #686868;
 border-radius:2px;
 padding:5px;position: relative;
 }
-.testim .btn{
+.profile_list .btn{
 padding:6px 4px;
 }
-.testim .btn-primary,.testim .btn-primary:hover{
+.profile_list .btn-primary,.profile_list .btn-primary:hover{
 background:#686868;
 border-color:#686868;
 color:white;
 border-top-right-radius:0;
 border-bottom-right-radius:0;
 }
-.testim .btn-default{
+.profile_list .btn-default{
 background:#FFFFFF;
 color:#686868;
 border-top-left-radius:0;
@@ -107,10 +131,10 @@ width:100%;
 }
 .thumbnail p{
 }
-.testim .profile{
+.profile_list .profile{
 margin:10px 0;
 }
-.testim a,.testim a:hover{
+.profile_list a,.profile_list a:hover{
 	text-decoration: none;
 	color: inherit;
 }
@@ -128,34 +152,80 @@ margin:10px 0;
 	width: 50%;
 	display: inline;
 }
-.testim .photo{
+.profile_list .photo{
 position:relative;
 overflow:hidden;
 }
-.testim .profile:hover .photo.online:after{
+.profile_list .profile:hover .photo.online:after{
 left:-105px;
 }
-.testim .profile:hover .photo.hot:before{
+.profile_list .profile:hover .photo.hot:before{
 right:-105px;
 }
-.testim .profile:hover{
+.profile_list .profile:hover{
 padding:0px 5px 0px;
 margin:0px;
 }
-.testim .profile:hover .thumbnail p{
+.profile_list .profile:hover .thumbnail p{
 font-size:1.5rem;
 }
-.testim .profile:hover .thumbnail{
+.profile_list .profile:hover .thumbnail{
 height: 390px;
 border:1px solid #A5004D;
 -webkit-box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.5),0px -1px 5px 0px rgba(50, 50, 50, 0.5);
 -moz-box-shadow:    0px 3px 5px 0px rgba(50, 50, 50, 0.5),0px -1px 5px 0px rgba(50, 50, 50, 0.5);
 box-shadow:         0px 3px 5px 0px rgba(50, 50, 50, 0.5),0px -1px 5px 0px rgba(50, 50, 50, 0.5);
 }
-.testim .profile:hover .btn-primary{
+.profile_list .profile:hover .btn-primary{
 background:#A6014E;
 border:1px solid #A6014E;
 font-weight:bold;
+}
+.profile_list .vip .photo::after {
+	position: absolute;
+	content: "\f091";
+	font: normal normal normal 14px/1 FontAwesome;
+	text-align: center;
+	color: #fff;
+	font-weight: bold;
+	background: #23527C;
+	top: 10px;
+	right: -95px;
+	padding: 2px 0px;
+	font-size: 20px;
+	width: 100%;
+	-ms-transform: rotate(40deg);
+	-webkit-transform: rotate(40deg);
+	transform: rotate(40deg);
+}
+.profile_list .vip:hover .photo::after {
+	font-size: 24px;
+	top:20px;
+}
+.buy_points ul{
+	text-align:left;
+	padding-left: 10px;
+	list-style: none;
+    margin: 10px auto 20px;
+	max-width: 240px;
+}
+.buy_points ul li i{
+	margin-right: 5px;
+	color:green;
+	font-size: 20px;
+}
+.buy_points p{
+	margin: 10px 0;
+}
+.buy_points .btn{
+    margin: 15px 0;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.buy_points h3{
+	font-weight: bold;
+	margin: 20px 0;
 }
 /*Sidebar*/
 .sidebar{
@@ -243,10 +313,32 @@ font-weight:bold;
 }
 .profile_display h2{
 	margin-top: 0;
+	display: inline-block;
 }
 .profile_display .btn-message{
 	width: 100%;
 	margin:10px 0;
+}
+.profile_display .vip{
+	display: inline-block;
+	color:#D4AF37;
+	margin-left: 10px;
+	font-size: 30px;
+}
+.profile_display .actions{
+	height: 40px;
+	text-align: right;
+}
+.profile_display .actions i{
+	font-size: 32px;
+	margin:10px  5px;
+	cursor: pointer;
+}
+.profile_display .actions .favorite.on i{
+	color:#D4AF37;
+}
+.profile_display .actions .blocked.on i{
+	color:red;
 }
 /*crop avatar image*/
 .action
@@ -310,6 +402,9 @@ font-weight:bold;
 }
 #editprofileform .col-sm-4 p{
 	margin: 0 0 7px;
+}
+.favorite_users{
+	margin:20px 0;
 }
 /*search */
 .search-results{
@@ -521,8 +616,44 @@ font-weight:bold;
 	box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 .my_messages .panel-default div{
-	padding: 25px 15px 0;
+	padding: 15px 15px 0;
 }
-.my_messages .panel-default .col-sm-2{
+.my_messages .panel-default .col-sm-2:first-of-type{
 	padding: 0 15px;
+}
+.my_messages .panel-default i{
+	color: black;
+	margin-right: 10px;
+}
+
+/*doladuj*/
+#portfel iframe {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+#portfel {
+    width: 100%;
+    height: 1000px;
+    margin: 0;
+    padding: 15px;
+    border: none;
+}
+/*payment_checkout*/
+.pay_checkout{
+	margin: 15px;
+	text-align: center;
+}
+.pay_checkout button{
+	margin: 10px auto;
+	display: inline-block;
+	font-size: 16px;
+	padding: 10px 15px;
+}
+.pay_checkout .panel-body{
+	height: auto;
+	overflow-y: auto;
 }
