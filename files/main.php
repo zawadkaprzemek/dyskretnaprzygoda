@@ -41,10 +41,10 @@ if(!isset($_GET['page']))
 		header("Location:index.php");
 	}
 }
-if($_SESSION['account_type']=='1'){
+if($_SESSION['account_type']=='2'){
 	$prof_pp=$config->getConfig()->profiles_per_page;
 }else{
-	$prof_pp=$config->getConfig()->profiles_per_page+1;
+	$prof_pp=$config->getConfig()->profiles_per_page-1;
 }
 $min=$prof_pp*($page-1);
 $max=$prof_pp*$page;
@@ -59,7 +59,7 @@ $number=0;
 					$class='standard';
 				}
 	    		?>
-	    		<div class="col-md-4 col-sm-6 profile <?php echo $class;?>">
+	    		<div class="col-md-4 col-xs-6 col-sm-6 profile <?php echo $class;?>">
 				<a href="profile.php?name=<?php echo $profile['name'];?>">
 				<div class="thumbnail">
 					<div class="photo">
@@ -86,7 +86,7 @@ $number=0;
 }
 ?>
 </div>
-<div class="col-sm-6 col-sm-offset-3 text-center">
+<div class="col-sm-8 col-xs-12 col-sm-offset-2 text-center">
 <ul class="pagination">
 	<?php if($page>1){?>
 	<li><a href="<?php echo $_SERVER['PHP_SELF'].'?page='.($page-1);?>">«</a></li>

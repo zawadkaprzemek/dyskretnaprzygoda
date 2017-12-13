@@ -1,3 +1,4 @@
+<?php include_once ('files/headers.php');?>
 <?php session_start();
 include_once 'conf/config.php';
 include_once 'conf/functions.php';
@@ -30,6 +31,8 @@ if (!isset($_SESSION['usr_id'])) {
                             include ('files/my_profile/notifications.php');
                         }elseif ($_GET['action']=='favorite'){
                             include ('files/my_profile/favorite.php');
+                        }elseif ($_GET['action']=='visitors'){
+                            include ('files/my_profile/visitors.php');
                         }
                     }
                     ?>

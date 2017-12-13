@@ -1,3 +1,4 @@
+<?php include_once ('files/headers.php');?>
 <?php session_start();
 define("GALERY_PATH",'lib/images/gallery');
 define("MAXWIDTH",800);

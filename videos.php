@@ -7,11 +7,14 @@ if (!isset($_SESSION['usr_id'])) {
     header("Location:login.php");
 }?>
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
-    <title><?php echo $config->getConfig()->name?> - Napisz wiadomość</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title><?php echo $config->getConfig()->name?></title>
     <?php include ('files/head.php');?>
+    <link href="lib/css/video-js.css" rel="stylesheet">
+
+    <!-- If you'd like to support IE8 -->
+    <script src="lib/js/videojs-ie8.min.js"></script>
 </head>
 <body>
 <?php include('files/header.php');?>
@@ -21,18 +24,11 @@ if (!isset($_SESSION['usr_id'])) {
             <div class="col-sm-12">
                 <div class="col-sm-9 main pull-right">
                     <?php
-                        if(isset($_GET['with'])){
-                            include ('files/message/write_message.php');
-                        }elseif((isset($_GET['to']))&&(isset($_GET['from']))&&($_SESSION['usr_role']=='super_admin')){
-                            include ('files/users/messages.php');
-                        }else{
-                            header('Location:index.php');
-                        }
-
+                    include('files/videos/videos.php');
                     ?>
                 </div>
+                <div class="col-sm-3 sidebar"><?php include('files/sidebar.php');?></div>
             </div>
-            <div class="col-sm-3 sidebar"><?php include('files/sidebar.php');?></div>
         </div>
     </div>
 </section>

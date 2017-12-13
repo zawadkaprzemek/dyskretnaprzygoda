@@ -30,14 +30,14 @@ $mess=$result->num_rows;
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <div class="col-sm-8">
+                <div class="col-sm-8 col-xs-6">
                     <form class="navbar-form navbar-left" role="search" action="search.php">
                         <div class="form-group">
                         <input type="text" name="search" id="search" class="form-control" value="<?php if(isset($_GET['search'])){echo $_GET['search'];}?>" placeholder="Szukaj..." required>
                         </div>
                     </form>
                 </div>
-                <div class="col-sm-4 text-right">
+                <div class="col-sm-4 col-xs-6 text-right notifications">
                     <div class="notifications_container">
                         <?php
                         if($_SESSION['account_type']=='2'){ ?>

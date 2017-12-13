@@ -2,7 +2,7 @@
   "name":"Dyskretna przygoda",
   "display_fake":"yes",
   "display_true_users":"no",
-  "profiles_per_page":"11",
+  "profiles_per_page":"12",
   "allow_register_page":"no",
   "start_points":"400",
   "prices":{

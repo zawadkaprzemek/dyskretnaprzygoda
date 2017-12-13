@@ -42,6 +42,12 @@ if (isset($_POST['message'])) {
 if(($_SESSION['account_type']=='1')&&(coins_status($_SESSION['usr_name'],$con)<$config->getConfig()->prices->message)){
     $disabled='disabled=true';
 }
+$bsql="SELECT * FROM blocked_users WHERE user_name1='".$_GET['with']."' AND user_name2='".$_SESSION['usr_name']."'";
+$res=$con->query($bsql);
+if($res->num_rows>0){
+    $disabled='disabled=true';
+    $blocked=true;
+}
 ?>
 <div class="col-sm-12" id="chat" xmlns="http://www.w3.org/1999/html">
     <div class="panel panel-primary">
@@ -101,7 +107,10 @@ if(($_SESSION['account_type']=='1')&&(coins_status($_SESSION['usr_name'],$con)<$
                             fa-plus-circle" aria-hidden="true"></i></button> Dodaj punkty</a>
                 </li>
                <?php }
-
+                if(@$blocked==true){
+                    echo '<li>Użytkownik <strong>'.$_GET['with'].'</strong> zablokował Cie i nie chce z Tobą 
+                    rozmawiać!</li>';
+                }
                 ?>
             </ul>
         </div>

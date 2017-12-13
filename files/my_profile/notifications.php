@@ -18,7 +18,7 @@ if ($result->num_rows > 0) {
           </div>';
     }
 }else{
-    echo '<p>Brak powiadomień</p>';
+    echo '<p class="alert alert-info">Brak powiadomień</p>';
 }
 ?>
 </div>

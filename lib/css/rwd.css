@@ -1,0 +1,39 @@
+.about_me{
+    padding: 15px;
+}
+.profile_display .user_info div{
+    margin: 10px 0 0;
+}
+@media only screen and (max-width: 768px) {
+    .sidebar{
+        display: none;
+    }
+    .main{
+        width: 100%;
+    }
+    .profile_img{
+        margin:0 auto;
+    }
+    .user_info{
+        padding: 0;
+    }
+
+}
+@media only screen and (max-width: 558px) {
+    .galleries .col-xs-3{
+        width: 50%;
+    }
+    .btn-container{
+        width: 100%;
+        margin-left: 0;
+    }
+}
+@media only screen and (max-width: 340px) {
+    .galleries .col-xs-3{
+        width: 100%;
+    }
+    .profile_display .actions{
+        height: auto;
+        margin: 10px 0;
+    }
+}

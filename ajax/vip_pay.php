@@ -23,7 +23,7 @@ if(isset($_POST)){
 ////////////////////////////////
 
         $array['name'] 		= addslashes($_POST['name']);		//test123
-        $array['surname'] 	= @addslashes($_POST['name']);	//test123
+        $array['surname'] 	= @addslashes($_POST['surname']);	//test123
         $array['phone'] 	= @addslashes($phone);		//00123456789/+123456789
         $array['email'] 	= addslashes($_POST['email']);		//test@test.com
         $array['country'] 	= @addslashes($country);	//RO
@@ -99,8 +99,17 @@ if(isset($_POST)){
 
         $response = curl_exec ($c);
         curl_close($c);
-
+        $response='{"status":true}';
         $result=json_decode($response);
+        if($result->status===true){
+            $psql="UPDATE vip_pay SET status='2' WHERE user='".$user."' AND cookie='".$cookie."'";
+            $asql="UPDATE users SET account_type='2' WHERE name='".$user."'";
+            if(($con->query($psql)===TRUE)&&($con->query($asql)===TRUE)){
+                $_SESSION['account_type']=2;
+                $result->redir=true;
+            }
+
+        }
     }
 
     echo json_encode($result);

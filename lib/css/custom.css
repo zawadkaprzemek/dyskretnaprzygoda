@@ -6,7 +6,7 @@
 }
 html{
 	height:100%;
-	font-family:"Open Sans" !important;
+	font-family:"Open Sans";
 }
 .bold{
 	font-weight: bold;
@@ -327,7 +327,6 @@ font-weight:bold;
 }
 .profile_display .actions{
 	height: 40px;
-	text-align: right;
 }
 .profile_display .actions i{
 	font-size: 32px;
@@ -403,7 +402,7 @@ font-weight:bold;
 #editprofileform .col-sm-4 p{
 	margin: 0 0 7px;
 }
-.favorite_users{
+.favorite_users,.visitors{
 	margin:20px 0;
 }
 /*search */
@@ -482,8 +481,6 @@ font-weight:bold;
 	visibility: visible;
 }
 .galleries .panel-body{
-	max-height: 220px;
-	min-height: 110px;
 	height: auto;
 	overflow-y: auto;
 }
@@ -547,7 +544,7 @@ font-weight:bold;
 	min-height: 120px;
 	margin-bottom: 50px;
 }
-.upload .loading{
+.upload .loading,.loading_container .loading{
 	display: none;
 	background: rgba(255,255,255,0.3);
 	width: 100%;
@@ -558,8 +555,17 @@ font-weight:bold;
 	margin: auto auto;
 	text-align: center;
 }
+.loading_container{
+	position: relative;
+}
 .upload .loading img{
 	width: 120px;
+}
+.loading_container .loading img{
+	margin: auto;
+	width:120px;
+	height: 120px;
+	top:0; left: 0; right: 0; bottom: 0;
 }
 .fileinput-button {
 	position: relative;
@@ -627,14 +633,6 @@ font-weight:bold;
 }
 
 /*doladuj*/
-#portfel iframe {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    border: none;
-}
-
 #portfel {
     width: 100%;
     height: 1000px;
@@ -643,7 +641,7 @@ font-weight:bold;
     border: none;
 }
 /*payment_checkout*/
-.pay_checkout{
+.pay_checkout,.vip_success{
 	margin: 15px;
 	text-align: center;
 }
@@ -656,4 +654,43 @@ font-weight:bold;
 .pay_checkout .panel-body{
 	height: auto;
 	overflow-y: auto;
+}
+
+/*videos*/
+#video{
+    width: 100%;
+}
+
+.video-list{
+	margin:15px auto;
+}
+.video-list div{
+	min-height: 150px;
+}
+.video-list .active{
+	display: none;
+}
+.video-list div a{
+	position: relative;
+	display: block;
+	text-align: center;
+}
+.video-list div a::before{
+	position: absolute;
+	width: 60px;
+	height: 60px;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	margin:auto;
+	content:"\f144";
+	display: inline-block;
+	font: normal normal normal 60px/1 FontAwesome;
+	color:white;
+	/* IE 8 */ -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";
+	/* IE 5-7 */ filter: alpha(opacity=65);
+	/* Netscape */ -moz-opacity: 0.65;
+	/* Safari 1.x */ -khtml-opacity: 0.65;
+	/* Good browsers */ opacity: 0.65;
 }

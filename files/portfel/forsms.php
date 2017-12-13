@@ -10,7 +10,7 @@
       <p><strong>Dołatuj konto</strong></p>
     </div>
 
-    <div class="boxcontent">
+    <div class="boxcontent loading_container">
 
     <p>Punkty dają Ci możliwość wysyłania wiadomości. Kiedy masz na koncie punkty możesz też przeglądać wszystkie profile.</p>
     <p><i>20 pkt = 1 wiadomość</i></p>
@@ -21,7 +21,10 @@
   <form action="checkcode.php" id="searchForm">
     <input type="text" class="form-control" id="code_input" required>
     <input type="submit" id="fmp-button" class="cbtn" value="odbieram punkty"/>
-  </firm>
+  </form>
+      <div class="loading">
+        <img src="lib/images/loading.gif" alt="">
+      </div>
   </div>
 
   </div>
@@ -35,7 +38,7 @@
           $table = 'vip_pay';
           $sql = "SELECT * FROM $table WHERE user='" . $_SESSION['usr_name'] . "'";
           $qu = $con->query($sql);
-          if ($qu->num_rows != 0) {
+          if ($qu->num_rows > 0) {
             $res = $qu->fetch_array();
             $cookie = $res['cookie'];
             $pay_link = $res['pay_link'];
@@ -44,18 +47,21 @@
             <div class="boxheader">
               <p><strong>Zmień konto na VIP</strong></p>
             </div>
-            <div class="boxcontent">
+            <div class="boxcontent loading_container">
               <p>Zamówiłeś konto VIP. Twoja płatność obecnie jest weryfikowana.<br>Gdy tylko
-                  zaksięgujemy środki, Twoje
-                  konto zmieni się w konto VIP.</p>
+                  zaksięgujemy środki, Twoje konto zmieni się w konto VIP.</p>
 
-                <p>Kliknij w poniższy przycisk, aby sprawdzić status płatności</p>
+                <p class="pay_info">Kliknij poniżej, aby sprawdzić status płatności, lub - jeśli jeszcze tego nie
+                  zrobiłeś - aby opłacić konto VIP.</p>
                 <input type="hidden" name="cookie" id="cookie" value="<?php echo $cookie; ?>">
                 <input type="hidden" name="user" id="user" value="<?php echo $_SESSION['usr_name']; ?>">
-                <button class="btn btn-warning">Sprawdź status swojej płatności</button>
+                <button class="btn btn-warning check_vip">Sprawdź status swojej płatności</button>
                 <a href="<?php echo $pay_link; ?>">
                   <button class="btn btn-info">Opłać VIP</button>
                 </a>
+              <div class="loading">
+                <img src="lib/images/loading.gif" alt="">
+              </div>
             </div>
           <?php } else {
             ?>
@@ -64,7 +70,7 @@
             <p><strong>Zmień konto na VIP</strong></p>
           </div>
 
-          <div class="boxcontent">
+          <div class="boxcontent loading_container">
             <p>Zapomnij o ograniczeniach. <strong>Konto VIP daje Ci dostęp do wszystkich funkcji serwisu bez żadnych
                 ograniczeń</strong>. Zmień swoje konto na konto VIP raz na zawsze – <span
                   style="background-color: yellow;">już nigdy nie będziesz musiał doładowywać konta.</span></p>
@@ -72,6 +78,9 @@
                   style="font-size:13px; font-weight:normal"></br>za dożywotnie konto VIP, zero ograniczeń</span></p>
 
             <a id="vip-button" href="#" class="cbtn" href="">wybieram</a>
+            <div class="loading">
+              <img src="lib/images/loading.gif" alt="">
+            </div>
           </div>
           <?php }
         }?>
@@ -193,6 +202,8 @@ $(document).ready(function(){
 
   $('#searchForm').submit(function(e){
     e.preventDefault();
+    var parent=$(this).parent();
+    $(parent).children('.loading').css('display','flex');
     var s=$('#code_input').val();
     var name='<?php echo $_SESSION['usr_name']?>';
     $('.alert-container .alert').remove();
@@ -241,12 +252,15 @@ $(document).ready(function(){
                     $('span.coins').html('<i class="fa fa-gg-circle" aria-hidden="true"></i> '+resp.coins+' ');
                     $('span.coins').prop('title','Posiadasz '+resp.coins+' punktów do wydania w naszym portalu');
                 }
+                $(parent).children('.loading').hide();
               }
             });
             return false;
   });
 
   jQuery('#vip-button').click(function(event){
+    var parent=$(this).parent();
+    $(parent).children('.loading').css('display','flex');
     event.preventDefault();
     var email='<?php echo $email?>';
     var name='<?php echo $_SESSION['usr_name']?>';

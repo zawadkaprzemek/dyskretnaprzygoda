@@ -44,10 +44,27 @@ if(isset($_GET['action'])){
         <?php }
         ?></a>
 </div>
+<div <?php if((stristr($_SERVER['PHP_SELF'],'my_profile.php')=='my_profile.php')&&(($action=='visitors'))){
+    echo 'class="active"';}?>>
+    <a href="my_profile.php?action=visitors"><i class="fa fa-eye" aria-hidden="true"></i>Odwiedzili mnie
+        <?php $vsql="SELECT count(user_name1) as ile FROM profile_visit WHERE (user_name2='".$_SESSION['usr_name']."' AND 
+        checked='0')";
+        $vresult = $con->query($vsql);
+        $ile=$vresult->fetch_array()['ile'];
+        if ($ile>0) {?>
+            <span class="circle"><?php echo $ile;?></span>
+        <?php }
+        ?>
+    </a>
+</div>
 <div <?php if((stristr($_SERVER['PHP_SELF'],'my_profile.php')=='my_profile.php')&&(($action=='favorite'))){
     echo 'class="active"';}?>>
     <a href="my_profile.php?action=favorite"><i class="fa fa-star" aria-hidden="true"></i>Ulubieni
         użytkownicy</a>
+</div>
+<div <?php if(stristr($_SERVER['PHP_SELF'],'videos.php')=='videos.php'){
+    echo 'class="active"';}?>>
+    <a href="videos.php"><i class="fa fa-video-camera" aria-hidden="true"></i>Filmy użytkowników</a>
 </div>
     <hr>
     <?php
