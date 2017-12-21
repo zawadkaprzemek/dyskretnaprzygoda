@@ -1,5 +1,5 @@
 <?php include(__DIR__.'/../vip_pay_checkout.php');?>
-<div class="col-sm-12 visitors text-center">
+<div class="visitors text-center">
 
 
     <?php if($_SESSION['account_type']==2){?>
@@ -19,31 +19,8 @@
                 .user_name='" . $visitor['user_name1'] . "'";
                 $result = $con->query($sql2);
                 while ($profile = $result->fetch_array()) {
-                    if ($profile['account_type'] == '2') {
-                        $class = 'vip';
-                    } else {
-                        $class = 'standard';
-                    }
-                    ?>
-                    <div class="col-md-4 col-sm-6 profile <?php echo $class;?>">
-                    <a href="profile.php?name=<?php echo $profile['user_name'];?>">
-                        <div class="thumbnail">
-                            <div class="photo">
-                                <img src="<?php echo AVATAR_PATH.'/'.$profile['avatar'];?>" alt="" class="thumbnail-photo">
-                            </div>
-                            <div class="caption">
-                                <h3><?php echo $profile['user_name'].', '.$profile['age'];?></h3>
-                                <h4><?php echo $profile['state'];?></h4>
-                                <p class="ellipsis"><?php echo addDots($profile['info'],100);?></p>
-                                <div class="buttons">
-                                    <a class="btn btn-primary" href="profile.php?name=<?php echo $profile['user_name'];?>">Zobacz zdjęcia</a>
-                                    <a class="btn btn-default" href="message.php?with=<?php echo $profile['user_name'];?>">Wyślij wiadomość</a>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div></a>
-                </div>
-                <?php }
+                    user_profile($profile);
+                }
             }
 
             ?>

@@ -31,7 +31,7 @@ if ($result->num_rows > 0) {
         }
     }
 
-    if(isset($guest)) {
+    if(isset($guest)){
         $vsql = "SELECT * FROM $vtable WHERE user_name1='" . $guest . "' AND user_name2='" . $_GET['name'] . "'";
         if ($con->query($vsql)->num_rows == 0) {
             $addvsql = "INSERT INTO $vtable VALUES('" . $guest . "','" . $_GET['name'] . "',NOW(),0)";
@@ -49,9 +49,9 @@ if ($result->num_rows > 0) {
             $arr=explode(".",$roznica);
             $wiek=str_split((string)$arr[0]);
             if(($wiek[1]>1)&&($wiek[1]<5)){
-                $age=$arr[0].'&nsp;lata';
+                $age=$arr[0].'&nbsp;lata';
             }else{
-                $age=$arr[0].'&nsp; lat';
+                $age=$arr[0].'&nbsp; lat';
             }
         }else{
             $age=$data['age'];
@@ -62,7 +62,7 @@ if ($result->num_rows > 0) {
             $sex="Mężczyzna";
         }
         ?>
-        <div class="profile_display col-sm-12">
+        <div class="profile_display">
 
             <div class="col-sm-4 col-xs-12">
                 <img src="<?php echo AVATAR_PATH.'/'.$data['avatar'];?>" class="img-responsive profile_img">
@@ -78,9 +78,9 @@ if ($result->num_rows > 0) {
                 </div>
             </div>
             <div class="col-sm-8 col-xs-12 user_name">
-                <div class="col-sm-8"><h2><?php echo $data['user_name'].', '.$age;?>&nbsp;<?php echo is_vip
+                <div class="col-sm-9"><h2><?php echo $data['user_name'].', '.$age;?>&nbsp;<?php echo is_vip
                         ($data['user_name'],$con)?></h2></div>
-                <div class="col-sm-4 actions text-right">
+                <div class="col-sm-3 actions text-right">
                     <?php if($_SESSION['account_type']==2){
                         ?>
                     <input type="hidden" name="user_name" id="user_name" value="<?php echo $data['user_name']?>">

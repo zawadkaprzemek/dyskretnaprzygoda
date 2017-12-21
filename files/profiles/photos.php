@@ -4,7 +4,7 @@ $delete=true;
 }else{
 $delete=false;
 }
-$images=get_images($_GET['name'],'public');
+$images=get_images(strtolower($_GET['name']),'public');
 $count=count($images);
 ?>
 <div class="col-sm-12">
@@ -26,7 +26,7 @@ $count=count($images);
             </div>
         </div>
         <?php
-        $images=get_images($_GET['name'],'private');
+        $images=get_images(strtolower($_GET['name']),'private');
         $count=count($images,true);
         if(($count>0)||($_SESSION['usr_role']=='super_admin')){ ?>
         <div class="private-gallery">

@@ -5,8 +5,12 @@
   "profiles_per_page":"12",
   "allow_register_page":"no",
   "start_points":"400",
+  "standard":{
+    "max_pages":"10"
+  },
   "prices":{
     "message":"20"
   },
+  "paginate_range":"3",
   "author":"Przemysław Zawadka"
 }

@@ -137,6 +137,7 @@ if($res->num_rows>0){
         </div>
 
     </div>
+</div>
     <?php if(isset($errormsg)){
         echo '<p class="alert-warning alert">'.$errormsg.'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></p>';
     }?>

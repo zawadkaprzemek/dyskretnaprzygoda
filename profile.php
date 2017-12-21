@@ -18,7 +18,7 @@ if (!isset($_SESSION['usr_id'])) {
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <div class="col-sm-9 main pull-right">
+                <div class="col-lg-9 col-sm-9 main pull-right">
                     <?php
                     if(!isset($_GET['name'])){
                         header('Location:index.php');
@@ -27,7 +27,7 @@ if (!isset($_SESSION['usr_id'])) {
                     }
                     ?>
                 </div>
-                <div class="col-sm-3 sidebar"><?php include('files/sidebar.php');?></div>
+                <div class="col-lg-3 col-sm-3 sidebar"><?php include('files/sidebar.php');?></div>
             </div>
         </div>
     </div>

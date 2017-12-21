@@ -17,32 +17,19 @@ if(isset($_POST['edit_profile'])){
     $name = mysqli_real_escape_string($con, $_POST['user']);
     $state = mysqli_real_escape_string($con, $_POST['state']);
     $info = mysqli_real_escape_string($con, $_POST['info']);
-    if(isset($_POST['sex'])) {
-        $sex = mysqli_real_escape_string($con, $_POST['sex']);
-    }
-    if(isset($_POST['date_birth'])) {
-        $date_birth = mysqli_real_escape_string($con, $_POST['date_birth']);
-    }
-    $info_exist="SELECT * FROM $table WHERE user_name='$name'";
-    if($con->query($info_exist)->num_rows==0){
-        $sql="INSERT INTO $table VALUES ('$name',NULL,'$av_name','$state','$info','$sex','$date_birth')";
-        if ($con->query($sql) === TRUE) {
-            header("Location:profile.php?name=".$name);
-        } else {
-            $errormsg.= 'Error: '. $con->error.'<br>';
-        }
+    $age = mysqli_real_escape_string($con, $_POST['age']);
+
+    if($_POST['avatar']!=''){
+        $sql="UPDATE $table SET avatar='$av_name',age='$age', state='$state',info='$info' WHERE user_name='$name'";
     }else{
-        if($_POST['avatar']!=''){
-            $sql="UPDATE $table SET avatar='$av_name', state='$state',info='$info' WHERE user_name='$name'";
-        }else{
-            $sql="UPDATE $table SET state='$state',info='$info' WHERE user_name='$name'";
-        }
-        if ($con->query($sql) === TRUE) {
-            header("Location:profile.php?name=".$name);
-        } else {
-            $errormsg.= "Error: " . $con->error.'<br>';
-        }
+        $sql="UPDATE $table SET age='$age',state='$state',info='$info' WHERE user_name='$name'";
     }
+    if ($con->query($sql) === TRUE) {
+        header("Location:profile.php?name=".$name);
+    } else {
+        $errormsg.= "Error: " . $con->error.'<br>';
+    }
+
 }
 ?>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -85,10 +72,10 @@ if ($result->num_rows > 0) {
     $avatar='';
 }
 ?>
-<div class="form_container col-sm-12">
+<div class="form_container">
     <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>?action=edit" method="post" name="editprofileform" id="editprofileform" enctype="multipart/form-data">
-        <h2>Edytuj profil</h2>
-        <div class="form-group col-sm-6">
+        <div class="col-sm-12"><h3>Edytuj profil</h3></div>
+        <div class="form-group col-sm-8 col-md-8">
             <label for="state">Stan cywilny:</label>
             <input type="text" class="form-control" id="state" name="state" value="<?php echo $state;?>" required>
         </div>
@@ -98,26 +85,35 @@ if ($result->num_rows > 0) {
             <textarea class="form-control col-sm-8" name="info" id="info" required><?php echo $info;?></textarea>
         </div>
         <div class="clearfix"></div>
-        <div class="form-group col-sm-8 cropbox-container">
+        <div class="form-group col-sm-12 cropbox-container">
             <label for="file">Avatar:</label>
             <div class="imageBox">
                 <div class="thumbBox"></div>
                 <div class="spinner" style="display: none">Loading...</div>
             </div>
-            <div class="action">
-                <input type="button" id="btnCrop" class="btn btn-default" value="Ustaw jako avatar">
-                <input type="button" id="btnZoomIn" class="btn btn-default" value="+">
-                <input type="button" id="btnZoomOut" class="btn btn-default" value="-">
-                <input type="file" id="file" name="file" accept="image/*" <?php if($avatar==''){echo "required";}?>>
+            <div class="action row">
+                <div class="col-xs-5">
+                <span class="btn btn-primary fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>Wybierz zdjęcie...</span>
+                    <input type="file" name="file" id="file" accept="image/*" <?php if($avatar==''){echo "required";}?>>
+                </span>
+                    <p class="help-block hidden">Plik musi być zdjęciem i nie może zajmować więcej niż 2MB</p>
+                </div>
+                <div class="col-xs-7">
+                    <input type="button" id="btnCrop" class="btn btn-default crop" value="Ustaw jako avatar">
+                    <input type="button" id="btnZoomIn" class="btn btn-default resize" value="+">
+                    <input type="button" id="btnZoomOut" class="btn btn-default resize" value="-">
+                </div>
                 <div class="clearfix"></div>
-                <p class="help-block">Plik musi być zdjęciem i nie może zajmować więcej niż 500KB</p>
+                <p class="help-block">Plik musi być zdjęciem i nie może zajmować więcej niż 2MB</p>
             </div>
             <div style="display: none;">
                 <input type="hidden" name="avatar" id="avatar" value="">
                 <input type="hidden" name="old_avatar" id="old_avatar" value="<?php echo $avatar;?>">
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-12 hidden">
             <p class="bold">Podgląd:</p>
             <div class="cropped">
                 <?php if($avatar!=''){?>
@@ -128,10 +124,14 @@ if ($result->num_rows > 0) {
         <div class="clearfix"></div>
         <?php if(!isset($sex)){?>
             <div class="radio col-sm-8">
-                <label><input type="radio" name="sex" value="w"><i class="fa fa-female" aria-hidden="true"> Kobieta</i>
-                </label>
-                <label><input type="radio" name="sex" value="m"><i class="fa fa-male" aria-hidden="true"> Mężczyzna</i>
-                </label>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input type="radio" name="sex" value="w" required> <i class="fa fa-female" aria-hidden="true"> Kobieta</i>
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="sex" value="m" required> <i class="fa fa-male" aria-hidden="true"> Mężczyzna</i>
+                    </label>
+                </div>
             </div>
         <?php }?>
         <div class="clearfix"></div>

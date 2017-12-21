@@ -133,6 +133,7 @@ if($res->num_rows>0){
             </div>
         </div>
     </div>
+</div>
     <?php }
     }else{
         header("Location:my_profile.php?action=edit");

@@ -25,7 +25,7 @@ if ($result->num_rows > 0) {
             $sex="Mężczyzna";
         }
         ?>
-        <div class="profile_display col-sm-12">
+        <div class="profile_display">
 
             <div class="col-sm-4 col-xs-12">
                 <img src="<?php echo AVATAR_PATH.'/'.$data['avatar'];?>" class="img-responsive profile_img">

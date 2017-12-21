@@ -41,16 +41,16 @@ if(isset($_POST['add_profile'])){
     $age=18;
 }
 ?>
-<div class="form_container col-sm-12">
+<div class="form_container ">
     <?php echo $errormsg;?>
     <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>?action=add" method="post" name="addprofileform" id="addprofileform" enctype="multipart/form-data">
-        <h2>Dodaj nowego użytkownika</h2>
-        <div class="form-group col-sm-6">
+        <div class="col-sm-12"><h2>Dodaj nowego użytkownika</h2></div>
+        <div class="form-group col-sm-8 col-md-8">
             <label for="state">Login:</label>
             <input type="text" class="form-control" id="login" name="login" value="<?php echo $login?>" required>
         </div>
         <div class="clearfix"></div>
-        <div class="form-group col-sm-6">
+        <div class="form-group col-sm-8 col-md-8">
             <label for="state">Stan cywilny:</label>
             <input type="text" class="form-control" id="state" name="state" value="<?php echo $state?>" required>
         </div>
@@ -60,35 +60,48 @@ if(isset($_POST['add_profile'])){
             <textarea class="form-control col-sm-8" name="info" id="info" placeholder="..." required><?php echo $info?></textarea>
         </div>
         <div class="clearfix"></div>
-        <div class="form-group col-sm-8 cropbox-container">
+        <div class="form-group col-sm-12 cropbox-container">
             <label for="file">Avatar:</label>
             <div class="imageBox">
                 <div class="thumbBox"></div>
                 <div class="spinner" style="display: none">Loading...</div>
             </div>
-            <div class="action">
-                <input type="button" id="btnCrop" class="btn btn-default" value="Ustaw jako avatar">
-                <input type="button" id="btnZoomIn" class="btn btn-default" value="+">
-                <input type="button" id="btnZoomOut" class="btn btn-default" value="-">
-                <input type="file" id="file" name="file" accept="image/*" required>
+            <div class="action row">
+                <div class="col-xs-5">
+                <span class="btn btn-primary fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>Wybierz zdjęcie...</span>
+                    <input type="file" id="file" name="file" accept="image/*" required>
+                </span>
+                    <p class="help-block hidden">Plik musi być zdjęciem i nie może zajmować więcej niż 2MB</p>
+                </div>
+                <div class="col-xs-7">
+                    <input type="button" id="btnCrop" class="btn btn-default crop" value="Ustaw jako avatar">
+                    <input type="button" id="btnZoomIn" class="btn btn-default resize" value="+">
+                    <input type="button" id="btnZoomOut" class="btn btn-default resize" value="-">
+                </div>
                 <div class="clearfix"></div>
-                <p class="help-block">Plik musi być zdjęciem i nie może zajmować więcej niż 500KB</p>
+                <p class="help-block">Plik musi być zdjęciem i nie może zajmować więcej niż 2MB</p>
             </div>
             <div style="display: none;">
                 <input type="hidden" name="avatar" id="avatar" value="">
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4 hidden">
             <p class="bold">Podgląd:</p>
             <div class="cropped">
             </div>
         </div>
         <div class="clearfix"></div>
         <div class="radio col-sm-8">
-            <label><input type="radio" name="sex" value="w" required><i class="fa fa-female" aria-hidden="true"> Kobieta</i>
-            </label>
-            <label><input type="radio" name="sex" value="m" required><i class="fa fa-male" aria-hidden="true"> Mężczyzna</i>
-            </label>
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary">
+                    <input type="radio" name="sex" value="w" required> <i class="fa fa-female" aria-hidden="true"> Kobieta</i>
+                </label>
+                <label class="btn btn-primary">
+                    <input type="radio" name="sex" value="m" required> <i class="fa fa-male" aria-hidden="true"> Mężczyzna</i>
+                </label>
+            </div>
         </div>
         <div class="clearfix"></div>
         <div class="form-group col-sm-6">

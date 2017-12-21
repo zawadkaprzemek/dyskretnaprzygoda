@@ -1,8 +1,11 @@
-<?php include_once ('files/headers.php');?>
-<?php session_start();
+<?php
+include_once ('files/headers.php');
+session_start();
 include_once 'conf/config.php';
 include_once 'conf/functions.php';
 include_once 'conf/data_base.php';
+
+
 if (!isset($_SESSION['usr_id'])) {
     header("Location:login.php");
 }?>
@@ -31,8 +34,9 @@ if (!isset($_SESSION['usr_id'])) {
 
                     ?>
                 </div>
+                <div class="col-sm-3 sidebar"><?php include('files/sidebar.php');?></div>
             </div>
-            <div class="col-sm-3 sidebar"><?php include('files/sidebar.php');?></div>
+
         </div>
     </div>
 </section>

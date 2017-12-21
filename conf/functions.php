@@ -185,4 +185,26 @@ function send_message($from,$to,$message,$account_type,$message_price='20',$con)
         }
     }
 }
+function user_profile($array){
+    $class=($array['account_type']=='2')? 'vip' : 'standard';
+    ?>
+    <div class="col-md-4 col-xs-6 col-sm-6 profile <?php echo $class;?>">
+        <a href="profile.php?name=<?php echo $array['name'];?>">
+            <div class="thumbnail">
+                <div class="photo">
+                    <img src="<?php echo AVATAR_PATH.'/'.$array['avatar'];?>" alt="" class="img-responsive">
+                </div>
+                <div class="caption">
+                    <h3><?php echo $array['name'].', '.$array['age'];?></h3>
+                    <h4><?php echo $array['state'];?></h4>
+                    <p><?php echo addDots($array['info'],100);?></p>
+                 </div>
+                <div class="buttons">
+                    <a class="btn btn-primary" href="profile.php?name=<?php echo $array['name'];?>">Zobacz zdjęcia</a>
+                    <a class="btn btn-default" href="message.php?with=<?php echo $array['name'];?>">Wyślij wiadomość</a>
+                </div>
+            </div>
+        </a>
+    </div>
+<?php }
 ?>

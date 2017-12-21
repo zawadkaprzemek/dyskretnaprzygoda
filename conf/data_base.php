@@ -1,7 +1,7 @@
  <?php
 if(($_SERVER['HTTP_HOST']=='localhost')||($_SERVER['SERVER_ADDR']=='127.0.0.1')||($_SERVER['HTTP_HOST']=='10.105.48.188')||($_SERVER['HTTP_HOST']=='10.110.248.2')){
 	$arr=array(
-		"dbname"=>"dyskretna_online",
+		"dbname"=>"dyskretna_przygoda",
 	  	"host"=>"localhost",
 	  	"login"=>"root",
 	  	"password"=>"kisiello1989"

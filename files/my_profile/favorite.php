@@ -1,9 +1,9 @@
 <?php include(__DIR__.'/../vip_pay_checkout.php');?>
-<div class="col-sm-12 favorite_users text-center">
+<div class="favorite_users text-center">
 <?php if($_SESSION['account_type']==2){ ?>
     <ul class="nav nav-tabs nav-pills nav-justified" role="tablist">
-        <li class="active"><a href="#favorite" role="tab" data-toggle="tab">Ulubieni użytkownicy</a></li>
-        <li><a href="#blocked" role="tab" data-toggle="tab">Użytkownicy zablokowani</a></li>
+        <li class="active col-xs-6"><a href="#favorite" role="tab" data-toggle="tab">Ulubieni użytkownicy</a></li>
+        <li class="col-xs-6"><a href="#blocked" role="tab" data-toggle="tab">Użytkownicy zablokowani</a></li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="favorite">
@@ -20,35 +20,8 @@
                 . $fav['user_name2'] . "'";
             $result = $con->query($sql2);
             while ($profile = $result->fetch_array()) {
-                if ($profile['account_type'] == '2') {
-                    $class = 'vip';
-                } else {
-                    $class = 'standard';
-                }
-                ?>
-                <div class="col-md-4 col-sm-6 profile <?php echo $class; ?>">
-                    <a href="profile.php?name=<?php echo $profile['user_name']; ?>">
-                        <div class="thumbnail">
-                            <div class="photo">
-                                <img src="<?php echo AVATAR_PATH . '/' . $profile['avatar']; ?>" alt=""
-                                     class="thumbnail-photo">
-                            </div>
-                            <div class="caption">
-                                <h3><?php echo $profile['user_name'] . ', ' . $profile['age']; ?></h3>
-                                <h4><?php echo $profile['state']; ?></h4>
-                                <p class="ellipsis"><?php echo addDots($profile['info'], 100); ?></p>
-                                <div class="buttons">
-                                    <a class="btn btn-primary" href="profile.php?name=<?php echo $profile['user_name'];
-                                    ?>">Zobacz zdjęcia</a>
-                                    <a class="btn btn-default" href="message.php?with=<?php echo $profile['user_name'];
-                                    ?>">Wyślij wiadomość</a>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            <?php }
+                user_profile($profile);
+            }
         }
     }else{
         echo '<p class="alert alert-info">Jeszcze żadnego z użytkowników naszego serwisu nie dodałeś do ulubionych</p>';
@@ -69,35 +42,8 @@
                             . $fav['user_name2'] . "'";
                         $result = $con->query($sql2);
                         while ($profile = $result->fetch_array()) {
-                            if ($profile['account_type'] == '2') {
-                                $class = 'vip';
-                            } else {
-                                $class = 'standard';
-                            }
-                            ?>
-                            <div class="col-md-4 col-sm-6 profile <?php echo $class; ?>">
-                                <a href="profile.php?name=<?php echo $profile['user_name']; ?>">
-                                    <div class="thumbnail">
-                                        <div class="photo">
-                                            <img src="<?php echo AVATAR_PATH . '/' . $profile['avatar']; ?>" alt=""
-                                                 class="thumbnail-photo">
-                                        </div>
-                                        <div class="caption">
-                                            <h3><?php echo $profile['user_name'] . ', ' . $profile['age']; ?></h3>
-                                            <h4><?php echo $profile['state']; ?></h4>
-                                            <p class="ellipsis"><?php echo addDots($profile['info'], 100); ?></p>
-                                            <div class="buttons">
-                                                <a class="btn btn-primary" href="profile.php?name=<?php echo $profile['user_name'];
-                                                ?>">Zobacz zdjęcia</a>
-                                                <a class="btn btn-default" href="message.php?with=<?php echo $profile['user_name'];
-                                                ?>">Wyślij wiadomość</a>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        <?php }
+                            user_profile($profile);
+                        }
                     }
                 }else{
                     echo '<p class="alert alert-info">Żaden z użytkowników naszego serwisu nie został przez Ciebie 
