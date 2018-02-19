@@ -1,6 +1,8 @@
 <?php
 if(isset($_GET['search'])){?>
-<div class="col-sm-12 search-results">
+<div class="search-results">
+    <div class="col-sm-12"><h3>Wyniki wyszukiwania "<?php echo $_GET['search']?>":</h3></div>
+    <div class="text-center profile_list">
     <?php
     $table='users';
     $table2="users_info";
@@ -13,23 +15,19 @@ if(isset($_GET['search'])){?>
     $sql.=" ORDER BY $table.name";
     $result = $con->query($sql);
     if ($result->num_rows > 0) {?>
-        <div class="col-sm-12"><h2>Wyniki wyszukiwania <?php echo $_GET['search']?>:</h2></div>
-        <?php while($data = $result->fetch_assoc()) {?>
-            <a href="profile.php?name=<?php echo $data['name'];?>">
-            <div class="col-sm-2">
-                <img src="<?php echo AVATAR_PATH.'/'.$data['avatar'];?>" alt="<?php echo $data['name']?>" class="img-rounded">
-            </div>
-            <div class="col-sm-4">
-            <?php echo $data['name'];?>
-            </div>
-            </a>
+        <?php while($profile = $result->fetch_assoc()) {
+            user_profile($profile);
+            ?>
 
         <?php } ?>
     <?php }else{ ?>
-        <div class="col-sm-12"><h3>Nie znaleziono żadnego użytkownika pasującego do podanej frazy: <?php echo $_GET['search']?></h3></div>
+        <div class="col-sm-12"><p class="alert alert-info">Nie znaleziono żadnego użytkownika pasującego do podanej frazy:
+                <?php echo
+                $_GET['search']?></></div>
     <?php }
     ?>
-
+        <div class="clearfix"></div>
+    </div>
 
 </div>
 <?php }else{

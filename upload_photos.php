@@ -1,3 +1,4 @@
+<?php include_once ('files/headers.php');?>
 <?php session_start();
 define("GALERY_PATH",'lib/images/gallery');
 define("MAXWIDTH",800);
@@ -10,9 +11,9 @@ $fail=0;
 
 if($_REQUEST['method']=='ADD'){
     if($_REQUEST['gallery']=='private'){
-        $path_to_gal=GALERY_PATH.'/'.$_REQUEST['user'].'/private';
+        $path_to_gal=GALERY_PATH.'/'.strtolower($_REQUEST['user']).'/private';
     }else{
-        $path_to_gal=GALERY_PATH.'/'.$_REQUEST['user'];
+        $path_to_gal=GALERY_PATH.'/'.strtolower($_REQUEST['user']);
     }
     $path=realpath($path_to_gal);
     $thumbpath=realpath($path_to_gal.'/thumbnail');
@@ -22,7 +23,6 @@ if($_REQUEST['method']=='ADD'){
         $path=realpath($path_to_gal);
         $thumbpath=realpath($path_to_gal.'/thumbnail');
     }
-
     foreach ($_FILES['files']['name'] as $i => $name) {
         if (strlen($_FILES['files']['name'][$i]) > 1) {
             try{
@@ -92,8 +92,8 @@ if($_REQUEST['method']=='DELETE'){
     $arr= explode('/',$_REQUEST['image']);
     $image=$arr[(sizeof($arr)-1)];
     $gal=($_REQUEST['gallery']=='private'? $_REQUEST['gallery']:'');
-    $image_path=realpath(GALERY_PATH.'/'.$_REQUEST['user'].'/'.$gal.'/'.$image);
-    $thumb_path=realpath(GALERY_PATH.'/'.$_REQUEST['user'].'/'.$gal.'/thumbnail/'.$image);
+    $image_path=realpath(GALERY_PATH.'/'.strtolower($_REQUEST['user']).'/'.$gal.'/'.$image);
+    $thumb_path=realpath(GALERY_PATH.'/'.strtolower($_REQUEST['user']).'/'.$gal.'/thumbnail/'.$image);
 
     if((unlink($image_path))&&(unlink($thumb_path))){
         $success++;

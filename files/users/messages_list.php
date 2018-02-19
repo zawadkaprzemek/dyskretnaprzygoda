@@ -9,7 +9,7 @@
     $result = $con->query($sql);
     if ($result->num_rows > 0) {
         while ($profiles = $result->fetch_assoc()) {
-            $sql2 = "SELECT user_from,user_to,MAX(data_mess)as max_data FROM $table WHERE user_from='" . $profiles['name'] . "' OR user_to='" . $profiles['name'] . "' GROUP BY user_to";
+            $sql2 = "SELECT user_from,user_to,MAX(data_mess)as max_data FROM $table WHERE (user_from='" . $profiles['name'] . "' OR user_to='" . $profiles['name'] . "') GROUP BY user_from,user_to";
             $result2 = $con->query($sql2);
             if ($result2->num_rows > 0) {
                 $arr = [];

@@ -4,11 +4,11 @@ $delete=true;
 }else{
 $delete=false;
 }
-$images=get_images($_GET['name'],'public');
+$images=get_images(strtolower($_GET['name']),'public');
 $count=count($images);
 ?>
 <div class="col-sm-12">
-    <h2>Zdjęcia użytkownika</h2>
+    <h4>Zdjęcia użytkownika</h4>
     <?php include('files/gallery.php')?>
     <div class="galleries panel panel-default">
         <div class="public-gallery">
@@ -26,7 +26,7 @@ $count=count($images);
             </div>
         </div>
         <?php
-        $images=get_images($_GET['name'],'private');
+        $images=get_images(strtolower($_GET['name']),'private');
         $count=count($images,true);
         if(($count>0)||($_SESSION['usr_role']=='super_admin')){ ?>
         <div class="private-gallery">
@@ -35,11 +35,14 @@ $count=count($images);
             </div>
             <div class="panel-body">
                 <?php
-                if($_SESSION['usr_role']=='super_admin'){
+                if(($_SESSION['usr_role']=='super_admin')&&(!isset($_GET['ref_user']))){
                     $gall_perm=1;
                 }else{
                     $perm_table='gallery_permissions';
-                    $perm_sql="SELECT status FROM $perm_table WHERE (gallery_owner='".$_GET['name']."' AND user='".$_SESSION['usr_name']."')";
+                    $guest=(isset($_GET['ref_user']))? $_GET['ref_user'] : $_SESSION['usr_name'];
+
+                    $perm_sql="SELECT status FROM $perm_table WHERE (gallery_owner='".$_GET['name']."' AND user='"
+                        .$guest."')";
                     $perm=$con->query($perm_sql);
                     if ($perm->num_rows > 0){
                         while($data = $perm->fetch_assoc()) {
@@ -58,7 +61,7 @@ $count=count($images);
                     if($gall_perm==1){
                         print_images($images,$delete);
                     }else{
-                        no_permissions_gallery(@$wfa);
+                        no_permissions_gallery(@$wfa,$guest);
                     }
                 }
                 ?>

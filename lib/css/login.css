@@ -1,58 +1,82 @@
 body{
-    background: url('../images/background.jpg')no-repeat top center black;
-    background-size:100%;
+    background: url('../images/background.png');
 }
-.col-md-10.well{
-    margin-top: 30%;
-    background: #FFFFFF;
-    border-radius: 20px;
+.login_page{
+    padding-bottom: 25px;
 }
-.well legend{
-    text-align: center;
-    border: none;
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 5px;
+.login_page .col-sm-12.white_bg{
+    -webkit-border-radius:0;
+    -moz-border-radius:0;
+    border-radius:0;
+    padding: 25px;
 }
-.well input{
-    border-radius: 10px;
+.white_bg{
+    background: white;
 }
-.well input[type="submit"]{
-    color: white;
-    font-weight: bold;
-    width: 150px;
-    font-size: 20px;
-    display: block;
-    margin:10px auto;
-    background: #eb2d2d;
-    background: -moz-linear-gradient(top,  #eb2d2d 0%, #8e0606 100%);
-    background: -webkit-linear-gradient(top,  #eb2d2d 0%,#8e0606 100%);
-    background: linear-gradient(to bottom,  #eb2d2d 0%,#8e0606 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eb2d2d', endColorstr='#8e0606',GradientType=0 );
+.girl_bg{
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+    background-image: url("../images/girl.jpg");
+    padding-left: 25px;
+    background-size:cover;
+    background-position: top center;
 }
-.well hr{
-    width: 20%;
-    display: block;
-    margin: 0 auto;
-    background-color: #C72121;
-    height: 2px;
-    margin-bottom: 30px;
+.login_page .col-sm-5{
+    -webkit-border-radius:0;
+    -moz-border-radius:0;
+    border-radius:0;
+    padding-left: 0;
+    padding-right: 0;
 }
-.well .form-group{
-    margin-bottom: 20px;
-}
-.well .form-group:nth-of-type(3){
-    margin-bottom: 0;
-}
-footer{
-    padding: 15px 0;
-    background:#E5E5E5;
+.login_page form{
+    padding:25px 50px;
     width: 100%;
-    bottom: 0;
-    position: absolute;
-    z-index: 100;
+    text-align: center;
+    background: #f6f5f5;
 }
-footer img{
-    display: inline-block;
-    margin: 10px 40px;
+.login_page form input[type="submit"]{
+    background: #ab0050;
+    border: 3px solid #FFF;
+    margin: auto;
+    float: none;
+    text-transform: none;
+    text-shadow: none;
+    border-radius: 0px;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+}
+.login_page .col-sm-5.only_text{
+    color: #fff;
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+.login_page .only_text p{
+    font-weight: bold;
+    font-size: 18px;
+}
+.login_page .only_text p span{
+    color: #ea0370;
+}
+.login_page .service_name{
+    font-style: italic;
+    margin-top: 40px;
+}
+
+/*responsive*/
+
+@media only screen and (max-width: 768px) {
+    .girl_bg{
+        padding-left: 15px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .col-xs-8.text-center{
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .login_page form{
+        padding: 20px 15px;
+    }
 }

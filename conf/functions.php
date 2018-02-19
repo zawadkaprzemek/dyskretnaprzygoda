@@ -1,6 +1,7 @@
 <?php
 define("AVATAR_PATH",'lib/images/avatars');
 define("GALLERY_PATH",'lib/images/gallery');
+define("VIDEOS_PATH",'lib/video');
 define("ACTIVATE_CODE",'SXC693FXCY');
 $month_names=array('','styczeń','luty','marzec','kwiecień','maj','czerwiec','lipiec','sierpień','wrzesień','październik','listopad','grudzień');
 
@@ -66,7 +67,7 @@ function print_images($images,$delete=false){
     foreach ($images as $image){
         $to_remove=['lib/images/gallery/','/thumbnail'];
         $big_image=str_replace($to_remove,'',$image);
-        echo '<div class="col-sm-2 text-center preview">
+        echo '<div class="col-sm-2 col-xs-3 text-center preview">
               <a href="#" data-image="'.$big_image.'" class="img-prev" data-gallery><img src="'.$image.'" /></a>';
         if($delete){
             echo '<button class="delete" data-type="DELETE">
@@ -77,7 +78,7 @@ function print_images($images,$delete=false){
     }
 }
 
-function no_permissions_gallery($wfa=false){
+function no_permissions_gallery($wfa=false,$guest){
     $text='<div class="col-sm-2 lock">
           <img src="lib/images/lock.png" class="img-responsive">
           </div>
@@ -91,15 +92,20 @@ function no_permissions_gallery($wfa=false){
             }
 
     $text.='</div>';
-    $text.='<input type="hidden" name="user" value="'.$_SESSION['usr_name'].'">';
+    $text.='<input type="hidden" name="guest" value="'.$guest.'">';
     $text.='<input type="hidden" name="owner" value="'.$_GET['name'].'">';
     echo $text;
 }
 
-function print_notification($type,$owner,$user){
+function print_notification($type,$owner,$user,$role='user'){
+    if($role=='fake'){
+        $link='profile.php?name='.$user.'&ref_user='.$owner;
+    }else{
+        $link='profile.php?name='.$user;
+    }
     switch ($type){
         case 1:
-            $text='Użytkownik <a href="profile.php?name='.$user.'" target="_blank">'.$user.'</a> prosi o dostęp do prywatnej galerii';
+            $text='Użytkownik <a href="'.$link.'" target="_blank">'.$user.'</a> prosi o dostęp do prywatnej galerii';
             $text.='<form action="'.$_SERVER['REQUEST_URI'].'" class="permissions_answer">
                     <input type="hidden" name="user" value="'.$user.'">
                     <input type="hidden" name="owner" value="'.$owner.'">
@@ -109,18 +115,19 @@ function print_notification($type,$owner,$user){
                     </form>';
             break;
         case 2:
-            $text='Użytkownik <a href="profile.php?name='.$user.'" target="_blank">'.$user.'</a> zaakceptował Twoją prośbę o dostęp do prywatnej galerii';
+            $text='Użytkownik <a href="'.$link.'" target="_blank">'.$user.'</a> zaakceptował Twoją prośbę o dostęp do prywatnej galerii';
             break;
         case 3:
-            $text='Użytkownik <a href="profile.php?name='.$user.'" target="_blank">'.$user.'</a> odrzucił Twoją prośbę o dostęp do prywatnej galerii';
+            $text='Użytkownik <a href="'.$link.'" target="_blank">'.$user.'</a> odrzucił Twoją prośbę o dostęp do prywatnej galerii';
             break;
         case 4:
-            $text='Zaakceptowano prośbę użytkownika <a href="profile.php?name='.$user.'" target="_blank">'.$user.'</a> o dostęp do prywatnej galerii';
+            $text='Zaakceptowano prośbę użytkownika <a href="'.$link.'" target="_blank">'.$user.'</a> o dostęp do prywatnej galerii';
             break;
         case 5:
-            $text='Odrzucono prośbę użytkownika <a href="profile.php?name='.$user.'" target="_blank">'.$user.'</a> o dostęp do prywatnej galerii';
+            $text='Odrzucono prośbę użytkownika <a href="'.$link.'" target="_blank">'.$user.'</a> o dostęp do prywatnej galerii';
             break;
         default:
+            $text='';
             break;
     }
     return $text;
@@ -140,4 +147,64 @@ function jednostki($howmany){
     }
     return $howmany.' '.$jed;
 }
+
+function is_vip($user,$con){
+    $sql="SELECT account_type FROM users WHERE name='".$user."'";
+    $res=$con->query($sql)->fetch_array()['account_type'];
+    if($res==2){
+        if($_SESSION['usr_name']==$user){
+            $title='Posiadasz konto VIP';
+        }else{
+            $title='Ten użytkownik posiada konto VIP';
+        }
+        return '<span class="vip" title="'.$title.'"><i class="fa fa-trophy" aria-hidden="true"></i></span>';
+    }
+}
+function coins_status($name,$con){
+    $coins_table='account_coins';
+    $coins_sql="SELECT coins FROM $coins_table WHERE login='".$name."'";
+    return $con->query($coins_sql)->fetch_array()['coins'];
+}
+
+function send_message($from,$to,$message,$account_type,$message_price='20',$con){
+    $table="messages";
+    $sql = "INSERT INTO $table VALUES(NULL,'$from','$to','$message',NOW(),0)";
+    if($account_type=='2'){
+        if ($con->query($sql) === TRUE) {
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        $coin_table='account_coins';
+        $coin_sql="UPDATE $coin_table SET coins=coins-".$message_price." WHERE login='".$from."'";
+        if((coins_status($from,$con)>=$message_price)&&($con->query($sql)===TRUE)&&($con->query($coin_sql)===TRUE)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+function user_profile($array){
+    $class=($array['account_type']=='2')? 'vip' : 'standard';
+    ?>
+    <div class="col-md-4 col-xs-6 col-sm-6 profile <?php echo $class;?>">
+        <a href="profile.php?name=<?php echo $array['name'];?>">
+            <div class="thumbnail">
+                <div class="photo">
+                    <img src="<?php echo AVATAR_PATH.'/'.$array['avatar'];?>" alt="" class="img-responsive">
+                </div>
+                <div class="caption">
+                    <h3><?php echo $array['name'].', '.$array['age'];?></h3>
+                    <h4><?php echo $array['state'];?></h4>
+                    <p><?php echo addDots($array['info'],100);?></p>
+                 </div>
+                <div class="buttons">
+                    <a class="btn btn-primary" href="profile.php?name=<?php echo $array['name'];?>">Zobacz zdjęcia</a>
+                    <a class="btn btn-default" href="message.php?with=<?php echo $array['name'];?>">Wyślij wiadomość</a>
+                </div>
+            </div>
+        </a>
+    </div>
+<?php }
 ?>

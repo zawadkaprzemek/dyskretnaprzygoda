@@ -1,4 +1,6 @@
-<?php session_start();
+<?php
+include_once ('files/headers.php');
+session_start();
 include_once 'conf/config.php';
 include_once 'conf/functions.php';
 include_once 'conf/data_base.php';

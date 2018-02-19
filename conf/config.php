@@ -41,6 +41,6 @@ class Config{
     }
 
 }
-$config = Config::getInstance('conf/config.json');
+$config = Config::getInstance(dirname(__FILE__).'/config.json');
 
 ?>

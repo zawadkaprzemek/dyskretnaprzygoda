@@ -1,5 +1,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="Expires" content="Mon, 26 Jul 1997 05:00:00 GMT">
+<meta http-equiv="Pragma" content="no-cache">
 <link rel="stylesheet" type="text/css" href="lib/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="lib/css/font-awesome.min.css">
 <link href="lib/css/emoji.css" rel="stylesheet">
@@ -8,6 +11,7 @@
 <link rel="stylesheet" href="lib/css/wdt-emoji-bundle.css"/>
 <link rel="stylesheet" type="text/css" href="lib/css/chat.css">
 <link rel="stylesheet" type="text/css" href="lib/css/custom.css">
+<link rel="stylesheet" type="text/css" href="lib/css/rwd.css">
 <script type="text/javascript" src="lib/js/jquery.js"></script>
 <script type="text/javascript" src="lib/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="lib/js/scripts.js"></script>

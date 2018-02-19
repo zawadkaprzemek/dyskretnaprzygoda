@@ -27,13 +27,15 @@ if ($result->num_rows > 0) {
         </div>
         <div id="collapse_'.$data['name'].'" class="panel-collapse collapse">
             <div class="panel-body">
-            <div class="col-sm-12 notification" id="'.$data['name'].'_nofif">';
+            <div class="col-sm-12 notification" id="'.$data['name'].'_notif">';
             $sql4="SELECT * FROM $table WHERE user_to='".$data['name']."' ORDER BY date DESC";
             $result2=$con->query($sql4);
             while ($data = $result2->fetch_assoc()) {
+                $rsql="SELECT role FROM users WHERE name='".$data['user_to']."'";
+                $role=$con->query($rsql)->fetch_array()['role'];
             echo '<div class="col-sm-10 panel panel-default notification-panel">
                     <div class="panel-body">
-                    '.print_notification($data['type'],$data['user_to'],$data['user_from']).'
+                    '.print_notification($data['type'],$data['user_to'],$data['user_from'],$role).'
                     <button type="button" class="close close-notif" data-dismiss="panel" data-notif="'.$data['id'].'" aria-hidden="true">×</button>
                     </div>
                   </div>';
@@ -45,7 +47,7 @@ if ($result->num_rows > 0) {
     }
     echo '</div>';
 }else{
-    echo '<p>Brak powiadomień</p>';
+    echo '<p class="alert alert-info">Brak powiadomień</p>';
 }
 ?>
 </div>

@@ -1,5 +1,5 @@
 <div class="col-sm-12">
-    <h2>Moje zdjęcia</h2>
+    <h4>Moje zdjęcia</h4>
     <?php
     if((isset($_GET['success']))||(isset($_GET['fail']))){
         if(@$_GET['success']>0){?>

@@ -35,11 +35,25 @@ if (isset($_POST['message'])) {
         }
     }
 }
+$bsql="SELECT * FROM blocked_users WHERE user_name1='".$_GET['from']."' AND user_name2='".$_GET['to']."'";
+$res=$con->query($bsql);
+if($res->num_rows>0){
+    $disabled='disabled=true';
+    $blocked=true;
+}
 ?>
 <div class="col-sm-12" id="chat" xmlns="http://www.w3.org/1999/html">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <span class="glyphicon glyphicon-comment"></span> Chat
+            <span class="glyphicon glyphicon-comment"></span> Chat z <a href="profile.php?name=<?php echo $_GET['from'];
+            ?>&ref_user=<?php echo $_GET['to']?>" target="_blank"><?php echo $_GET['from'];?></a>
+            <?php
+            $vip=is_vip($_GET['from'],$con);
+            if(empty($vip)){ ?>
+            <i class="fa fa-gg-circle" aria-hidden="true"></i> <?php echo coins_status($_GET['from'],$con);?>
+            <?php }else{
+                echo $vip;
+            }?>
         </div>
         <div class="panel-body">
             <ul class="chat">
@@ -89,18 +103,22 @@ if (isset($_POST['message'])) {
                     ?>
                     <li>Nie ma jeszcze żadnych wiadomości między tymi użytkownikami</li>
                 <?php }
+                if(@$blocked==true){
+                    echo '<li>Użytkownik <strong>'.$_GET['from'].'</strong> zablokował Cie i nie chce z Tobą 
+                    rozmawiać!</li>';
+                }
                 ?>
             </ul>
         </div>
         <div class="panel-footer">
-            <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>?to=<?php echo $_GET['to'] ?>&from=<?php echo $_GET['from'] ?>"
+            <form role="form" <?php echo @$disabled;?> action="<?php echo $_SERVER['PHP_SELF']; ?>?to=<?php echo $_GET['to'] ?>&from=<?php echo $_GET['from'] ?>"
                   method="post" name="messageform" id="messageform">
                 <div class="input-group">
 
-                    <textarea id="message-input" type="text" data-emojiable="true" name="message" class="form-control wdt-emoji-bundle-enabled wdt-emoji-open-on-colon input-sm" placeholder="..."
+                    <textarea id="message-input" <?php echo @$disabled;?> type="text" data-emojiable="true" name="message" class="form-control wdt-emoji-bundle-enabled wdt-emoji-open-on-colon input-sm" placeholder="..."
                               required></textarea>
                     <span class="input-group-btn">
-                            <input type="submit" class="btn btn-warning btn-sm" id="btn-chat" name="write_message"
+                            <input type="submit" <?php echo @$disabled;?> class="btn btn-warning btn-sm" id="btn-chat" name="write_message"
                                    value="Wyślij"/>
                         </span>
                     <div class="form-group">
@@ -115,6 +133,7 @@ if (isset($_POST['message'])) {
             </div>
         </div>
     </div>
+</div>
     <?php }
     }else{
         header("Location:my_profile.php?action=edit");
